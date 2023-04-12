@@ -1,5 +1,8 @@
+import com.google.common.collect.ImmutableList;
+import com.google.common.truth.Expect;
 import org.examples.BiDirectionalAssociation;
 import org.examples.UniDirectionalAssociation;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +15,9 @@ import static com.google.common.truth.Truth.assertWithMessage;
 public class TruthExamples {
 
     @Test
+    /**
+     * Truth can make writing equality and comparative assertions quite easy
+     */
     public void intTest()
     {
         Integer i = 20;
@@ -27,6 +33,10 @@ public class TruthExamples {
     }
 
     @Test
+    /**
+     * Truth has a suite of assertions made specifically for floats, that allow for
+     * accounting for the inherent margin of error Floating Point Operations create
+     */
     public void floatTests()
     {
         float f1 = 1.0f;
@@ -35,11 +45,16 @@ public class TruthExamples {
 
         assertThat(f1).isWithin(0.11f).of(f2);
 
-        assertThat(f1).isEqualTo(f2);
+        assertWithMessage("When not using tolerances, using floats can be difficult \n" +
+                "Here, we check that 0.1f+0.1f+0.1 is equal to 0.3f, with no tolerance").that(0.1f+0.1f+0.1).isEqualTo(0.3f);
 
     }
 
     @Test
+    /**
+     * Truth has a number of tools for strings, such as regular expressions, seeing if a string ends , starts or contains
+     * a string of characters. This can make testing that data is formed correctly easy
+     */
     public void StringTests()
     {
 
@@ -54,6 +69,9 @@ public class TruthExamples {
     }
 
     @Test
+    /**
+     * Truth has a number of methods to make assertions on Iterable types.
+     */
     public void IterableTests()
     {
         ArrayList<Integer> list1 = new ArrayList<Integer>();
@@ -116,6 +134,38 @@ public class TruthExamples {
 
 
         assertWithMessage("This test is supposed to fail").that(BDA1.get()).isSameInstanceAs(BDA2);
+
+    }
+
+    @Rule
+    public final Expect expect = Expect.create();
+    @Test
+    /**
+     * using expect instead of assert allows more than one test to fail,
+     * same as with soft assertions in AssertJ
+     */
+    public void softAssertions()
+    {
+        expect.withMessage("using expect instead of assert allows more than one test to fail, \n" +
+                " same as with soft assertions in AssertJ").that(10).isEqualTo(20);
+        expect.withMessage("as you can see by multiple tests failing instead of only showing the first one that fails \n" +
+                "and then ending the test without running the other assertions").that(ImmutableList.of(10,20,30,40)).contains(55);
+        expect.that(25).isNotNull();
+        expect.that(20.789456).isWithin(1).of(20);
+        expect.that(0.1f+0.1f+0.1).isEqualTo(0.3f);
+
+
+    }
+
+    @Test
+    /**
+     * Truth also allows assertions on classes and exceptions
+     */
+    public void micellaniousTests()
+    {
+        assertThat(ArrayList.class).isAssignableTo(Iterable.class);
+
+        assertThat(new IllegalArgumentException("test exception")).hasMessageThat().isEqualTo("test exception");
 
     }
 
