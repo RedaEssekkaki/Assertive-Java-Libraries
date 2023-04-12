@@ -6,6 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
@@ -167,6 +168,7 @@ public class TruthExamples {
 
         assertThat(new IllegalArgumentException("test exception")).hasMessageThat().isEqualTo("test exception");
 
+        assertWithMessage("this test is supposed to fail").that(Integer.class).isAssignableTo(HashMap.class);
     }
 
 }
