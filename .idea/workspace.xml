@@ -45,16 +45,17 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/naomod/Bureau/example-assertions",
+    "last_opened_file_path": "/home/naomod/Bureau/example-assertions/examples",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GuavaExamples.testNullArgument">
-    <configuration name="GuavaExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GuavaExamples.testTrueExpression">
+    <configuration name="GuavaExamples.testFalseExpression" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testFalseExpression" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -79,21 +80,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TruthExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GuavaExamples.testTrueExpression" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="examples" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
+      <option name="METHOD_NAME" value="testTrueExpression" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TruthExamples.intTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TruthExamples" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="intTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GuavaExamples.testNullArgument" />
+        <item itemvalue="JUnit.GuavaExamples.testTrueExpression" />
+        <item itemvalue="JUnit.GuavaExamples.testFalseExpression" />
         <item itemvalue="JUnit.GuavaExamples.testNotNullArgument" />
-        <item itemvalue="JUnit.GuavaExamples" />
-        <item itemvalue="JUnit.TruthExamples" />
+        <item itemvalue="JUnit.GuavaExamples.testNullArgument" />
+        <item itemvalue="JUnit.TruthExamples.intTest" />
       </list>
     </recent_temporary>
   </component>
