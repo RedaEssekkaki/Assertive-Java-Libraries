@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Guava tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,21 +52,12 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GuavaExamples.testNotNullArgument_successful">
-    <configuration name="GuavaExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TruthExamples">
+    <configuration name="GuavaExamples.testCheckState_complexMessage_failure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GuavaExamples.testCheckArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="examples" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
-      <option name="METHOD_NAME" value="testCheckArgument" />
+      <option name="METHOD_NAME" value="testCheckState_complexMessage_failure" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -103,13 +93,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TruthExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="examples" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TruthExamples" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TruthExamples" />
+        <item itemvalue="JUnit.GuavaExamples.testCheckState_complexMessage_failure" />
         <item itemvalue="JUnit.GuavaExamples.testNotNullArgument_successful" />
         <item itemvalue="JUnit.GuavaExamples.testNotNullArgument" />
         <item itemvalue="JUnit.GuavaExamples.testCheckState_complexMessage_success" />
-        <item itemvalue="JUnit.GuavaExamples" />
-        <item itemvalue="JUnit.GuavaExamples.testCheckArgument" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681304937295</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Guava tests">
+      <created>1681306037333</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681306037333</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
