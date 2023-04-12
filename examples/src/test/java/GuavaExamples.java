@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 
 public class GuavaExamples {
 
+
     /**
      * Testing the checkArgument Guard in Guava
      *
@@ -14,9 +15,13 @@ public class GuavaExamples {
     public void testCheckArgument() {
         try {
             Preconditions.checkArgument(false);
-            fail("no exception thrown");
+            fail("no exception thrown, IllegalArgumentException expected");
         } catch (IllegalArgumentException expected) {
         }
+    }
+    @Test
+    public void testTrueExpression(){
+        Preconditions.checkArgument(true);
     }
 
     @Test
@@ -26,17 +31,4 @@ public class GuavaExamples {
     }
 
 
-    /**
-     * This test is going to fail because a */
-    @Test
-    public void testFalseExpression(){
-        Boolean test = false;
-        Preconditions.checkArgument(test , "The expression is false");
-    }
-
-    @Test
-    public void testTrueExpression(){
-        Boolean test = true;
-        Preconditions.checkArgument(test , "The expression is false");
-    }
 }
