@@ -1,3 +1,4 @@
+import org.examples.UniDirectionalAssociation;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -67,6 +68,30 @@ public class TruthExamples {
         assertThat(list1).isNotEmpty();
 
         assertWithMessage("List does not contain the number 16").that(list1).contains(16);
+
+    }
+
+    @Test
+    public void UniDirectionalTests()
+    {
+        UniDirectionalAssociation<Integer> UDA = new UniDirectionalAssociation<>();
+        Integer Int1 = 10;
+        Integer Int2 = 20;
+
+
+        assertThat(UDA.isSet()).isFalse();
+
+        UDA.setAssociatedValue(Int1);
+
+        assertThat(UDA.getAssociatedValue()).isEqualTo(10);
+        assertThat(UDA.isSet()).isTrue();
+
+        UDA.setAssociatedValue(Int2);
+
+        assertThat(UDA.getAssociatedValue()).isEqualTo(Int2);
+
+        assertWithMessage("THis test is supposed to fail").that(UDA.getAssociatedValue()).isSameInstanceAs(Int1);
+
 
     }
 
