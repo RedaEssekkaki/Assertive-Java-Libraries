@@ -2,6 +2,7 @@
 import org.apache.commons.lang3.Validate;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,10 @@ public class ApacheCommonsExamples {
             add(14.0);
             add(14.0);
         }};
-        testedStudent.set(grades);
+        try {
+            testedStudent.set(grades);
+            fail("Ths test is supposed to fail.");
+        } catch (IllegalArgumentException expected) {}
     }
 
     @Test
@@ -56,18 +60,27 @@ public class ApacheCommonsExamples {
             add(11.25);
             add(13.75);
         }};
-        testedStudent.set(grades);
+        try {
+            testedStudent.set(grades);
+            fail("This test is supposed to fail.");
+        } catch (IllegalArgumentException expected) {}
     }
 
     @Test
     public void testInsertNull () {
-        testedStudent.setGrade(0, null);
+        try {
+            testedStudent.setGrade(0, null);
+            fail("This test is supposed to fail.");
+        } catch (IllegalArgumentException expected) {}
     }
 
     @Test
     public void testAVG () {
-        testedStudent.setGrade(5, -2.0);
-        Double temp = testedStudent.avg();
+        try {
+            testedStudent.setGrade(5, -2.0);
+            Double temp = testedStudent.avg();
+            fail("This test is supposed to fail.");
+        } catch (IndexOutOfBoundsException expected) {}
     }
 
     /**
