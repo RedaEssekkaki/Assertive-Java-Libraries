@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Guava tests">
-      <change beforePath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +52,7 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TruthExamples">
+  <component name="RunManager">
     <configuration name="GuavaExamples.testCheckState_complexMessage_failure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
@@ -156,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681306037333</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Guava tests">
+      <created>1681306361260</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681306361260</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
