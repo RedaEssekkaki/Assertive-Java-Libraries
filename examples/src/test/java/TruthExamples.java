@@ -1,3 +1,4 @@
+import org.examples.BiDirectionalAssociation;
 import org.examples.UniDirectionalAssociation;
 import org.junit.Test;
 
@@ -92,6 +93,29 @@ public class TruthExamples {
 
         assertWithMessage("THis test is supposed to fail").that(UDA.getAssociatedValue()).isSameInstanceAs(Int1);
 
+
+    }
+
+    @Test
+    public void BiDirectionalTest()
+    {
+        BiDirectionalAssociation<Integer> BDA1 = new BiDirectionalAssociation<>();
+        BiDirectionalAssociation<Integer> BDA2 = new BiDirectionalAssociation<>();
+        BiDirectionalAssociation<Integer> BDA3 = new BiDirectionalAssociation<>();
+
+
+        BDA1.set(BDA2);
+
+        assertThat(BDA2.get()).isSameInstanceAs(BDA1);
+        assertThat(BDA1.get()).isSameInstanceAs(BDA2);
+
+        BDA1.set(BDA3);
+
+        assertThat(BDA2.get()).isNull();
+        assertThat(BDA3.get()).isSameInstanceAs(BDA1);
+
+
+        assertWithMessage("This test is supposed to fail").that(BDA1.get()).isSameInstanceAs(BDA2);
 
     }
 
