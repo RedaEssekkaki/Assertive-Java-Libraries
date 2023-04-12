@@ -2,15 +2,22 @@
 import org.junit.Test;
 import com.google.common.base.Preconditions;
 
+import static org.junit.Assert.fail;
+
 public class GuavaExamples {
 
-
+    /**
+     * Testing the checkArgument Guard in Guava
+     *
+     * */
     @Test
-    public void testNullArgument(){
-        String test = null;
-        Preconditions.checkNotNull(test, "An argument tot the function should be given");
+    public void testCheckArgument() {
+        try {
+            Preconditions.checkArgument(false);
+            fail("no exception thrown");
+        } catch (IllegalArgumentException expected) {
+        }
     }
-
 
     @Test
     public void testNotNullArgument(){
