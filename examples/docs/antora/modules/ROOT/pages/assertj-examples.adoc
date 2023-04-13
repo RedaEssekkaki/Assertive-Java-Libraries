@@ -1,0 +1,22 @@
+= Examples of assertions from the https://assertj.github.io/doc/[AssertJ] library =
+
+AssertJ is a library of assertions in Java, created by Joel Costigliola. Its goals are to make assertions more clear, more readable and to give helpful error messages.
+
+
+We have a lot of possible assertions, often in this form : `AssertThat(object1).is__Condition__(object2)`. It
+
+
+CAUTION: Bonjour +
+bold *constrained* & **un**constrained +
+italic _constrained_ & __un__constrained +
+bold italic *_constrained_* & **__un__**constrained
+
+monospace `constrained` & ``un``constrained +
+monospace bold italic `*_constrained_*` & ``**__un__**``constrained
+
+Type the word [.userinput]#asciidoc# into the search bar.
+
+
+
+The text pass:[<u>underline me</u>] is underlined.
+

@@ -1,4 +1,6 @@
-= Examples of assertions from the https://truth.dev[Truth] library =
+= Examples of assertions from the https://truth.dev[Truth] library
+
+
 
 Truth is a library developed by Google's https://github.com/google/guava[guava] team that provides methods to perform assertions in tests.
 
