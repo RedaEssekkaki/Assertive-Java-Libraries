@@ -10,7 +10,7 @@ Since the test are going to be necessarily false for them to work, we will use t
 
 == Private class: ==
 
-The `StudentGrade` class consist of an `ArrayList` of `Double`, the different grades, and methods to interact with them.
+The `StudentGrade` class consist of an `ArrayList` of `Double`, the different grades of a student, and methods to interact with them.
 
 .Hide/Show class code
 [%collapsible%open]
@@ -50,6 +50,143 @@ private class StudentGrade {
         }
         return divisor / divider;
     }
+}
+
+----
+====
+
+== Tests on StudentGrade: ==
+
+All these tests are destined to fail, hence the use of `fail("This test is supposed to fail");` and `catch ([expectedException] expected) {}` statements.
+
+Test setup:
+
+.Hide/Show test setup code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+private StudentGrade testedStudent = new StudentGrade();
+
+@BeforeEach
+public void setup () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+        add(14.0);
+    }};
+    testedStudent.set(grades);
+}
+
+----
+====
+
+Test max/min size: ensure that it is impossible to set an Array larger or smaller than expected.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testSetMoreThan8Grades () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+        add(14.0);
+        add(14.0);
+    }};
+    try {
+        testedStudent.set(grades);
+        fail("Ths test is supposed to fail.");
+    } catch (IllegalArgumentException expected) {}
+}
+
+@Test
+public void testSetLessThan8grades () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+    }};
+    try {
+        testedStudent.set(grades);
+        fail("This test is supposed to fail.");
+    } catch (IllegalArgumentException expected) {}
+}
+
+----
+====
+
+Test insert: ensure that inserted value cannot be null.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testInsertNull () {
+    try {
+        testedStudent.setGrade(0, null);
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
+}
+
+----
+====
+
+Test bounds: ensure that it is impossible to insert value out of the Array's limits.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testInsertOutOfBound () {
+    try {
+        testedStudent.setGrade(12, 18.0);
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
+}
+
+----
+====
+
+Test AVG: ensure that it is impossible for a student to have a negative grade when his average grade is calculated.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testAVG () {
+    try {
+        testedStudent.setGrade(5, -2.0);
+        Double temp = testedStudent.avg();
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
 }
 
 ----
