@@ -1,7 +1,7 @@
 site:
   title: Your Project Documentation
   url: https://example.com/docs
-  start_page: your-component::index.adoc
+  start_page: documentation::index.adoc
 
 content:
   sources:
