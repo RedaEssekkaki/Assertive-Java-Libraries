@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Delete antora.yml">
+      <change afterPath="$PROJECT_DIR$/examples/docs/antora/playbook.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/src/test/java/ApacheCommonsExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/test/java/ApacheCommonsExamples.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
