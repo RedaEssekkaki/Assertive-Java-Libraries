@@ -24,6 +24,9 @@ import java.util.function.Consumer;
 
 //@ExtendWith(SoftAssertionsExtension.class)
 
+/**
+ * This class contains multiple tests aimed at better understanding AssertJ.
+ */
 public class AssertJExamples {
    // @InjectSoftAssertions
     //private SoftAssertions softly;
