@@ -1,0 +1,56 @@
+= Examples of guard clauses from https://github.com/apache/commons-lang[Apache Commons]'s library =
+
+Apache commons is a multi-role library. Its https://github.com/apache/commons-lang/blob/master/src/main/java/org/apache/commons/lang3/Validate.java[Validate.java] class is designed to serve as guard clauses.
+
+Guard clauses are build as such: `Validate.[Condition]([tested value].[optional message].[optional value(s) for the formatted message])`. The conditions are large panel of check (from `isTrue` to `noNullElements`).
+
+As they are guard clauses, in order to test them, we will create a small private class, and use these clauses inside the different methods to prevent any issue caused by the user.
+
+Since the test are going to be necessarily false for them to work, we will use try-catch blocks to catch the exception, and throw errors if these exception aren't caught.
+
+== Private class: ==
+
+The `StudentGrade` class consist of an `ArrayList` of `Double`, the different grades, and methods to interact with them.
+
+.Hide/Show class code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+private class StudentGrade {
+    private ArrayList<Double> grades = new ArrayList<>(8);
+
+    public void set(ArrayList<Double> newGrades) {
+        Validate.isTrue(newGrades.size() == 8, "You can't have more or less grades than you have courses: current %d ; required 8", newGrades.size());
+        this.grades = newGrades;
+    }
+
+    public ArrayList<Double> get() {
+        return grades;
+    }
+
+    // Sets individual course's grade
+    public void setGrade(int courseNumber, Double newGrade) {
+        Validate.validIndex(this.grades, courseNumber, "There are only 8 courses in this school.");
+        Validate.notNull(newGrade, "You can't have a null grade.");
+        this.grades.set(courseNumber - 1, newGrade);
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Double avg () {
+        Validate.notEmpty(grades, "You must have a grade for each course");
+        Double divisor = Double.valueOf(0.0);
+        Double divider = Double.valueOf(0.0);
+
+        for (Double each : grades) {
+            Validate.isTrue(each >= 0, "A grade cannot be lesser than 0: %d", each);
+            divisor += each;
+            divider += Double.valueOf(1.0);
+        }
+        return divisor / divider;
+    }
+}
+
+----
+====
