@@ -1,1 +1,12 @@
-= title =
+= Example assertions =
+
+This repository holds a java projects which aims to provide examples
+of how multiple libraries allow to create assertions. These libraries include https://github.com/google/guava[Guava] ,
+https://github.com/apache/commons-lang[Apache Commons],
+https://github.com/google/truth[Truth] & http://joel-costigliola.github.io/assertj/[AssertJ] as well as
+https://gitlab.univ-nantes.fr/E203173Q/commons[the one we are currently building] as an extension to
+https://gitlab.univ-nantes.fr/atlanmod/commons/[Atlanmod Commons].
+
+== Examples : ==
+
+xref:truth-examples.adoc[Examples of assertions from the Truth library ]
