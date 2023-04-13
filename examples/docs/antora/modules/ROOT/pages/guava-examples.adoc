@@ -1,0 +1,11 @@
+= Examples of Preconditions from the https://github.com/google/guava[Guava] library =
+
+Guava is a set of core Java libraries from Google that includes new collection types (such as multimap and multiset), immutable collections, a graph library, and utilities for concurrency, I/O, hashing, caching, primitives, strings, and more. It is widely used on most Java projects within Google, and widely used by many other companies as well
+
+.*These examples are to test the main utilities regarding preconditions provided by this library :*
+
+[circle]
+** *Using and avoiding null*: null can be ambiguous, can cause confusing errors, and is sometimes just plain unpleasant. Many Guava utilities reject and fail fast on nulls, rather than accepting them blindly.
+
+** Guava provides a number of *precondition checking utilities* in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class.
+

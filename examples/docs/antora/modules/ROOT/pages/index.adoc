@@ -9,4 +9,5 @@ https://gitlab.univ-nantes.fr/atlanmod/commons/[Atlanmod Commons].
 
 == Examples : ==
 
-xref:truth-examples.adoc[Examples of assertions from the Truth library ]
+xref:truth-examples.adoc[Examples of assertions from the Truth library ] +
+xref:assertj-examples.adoc[Examples from the AssertJ library ]

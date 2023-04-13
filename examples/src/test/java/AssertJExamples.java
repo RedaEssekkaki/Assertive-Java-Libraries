@@ -24,11 +24,14 @@ import java.util.function.Consumer;
 
 //@ExtendWith(SoftAssertionsExtension.class)
 
+/**
+ * This class contains multiple tests aimed at better understanding AssertJ.
+ */
 public class AssertJExamples {
    // @InjectSoftAssertions
     //private SoftAssertions softly;
 
-    final StringBuilder descriptionReportBuilder = new StringBuilder(format("Assertions:%n"));;
+    final StringBuilder descriptionReportBuilder = new StringBuilder(format("Assertions:%n"));
     Consumer<Description> descriptionConsumer;
 
     @BeforeEach
@@ -57,7 +60,7 @@ public class AssertJExamples {
 
 
         // execute some assertions
-        List<String> frodo = new ArrayList<String>();
+        List<String> frodo = new ArrayList<>();
         frodo.add("Frodo");
         frodo.add("33");
         frodo.add("HOBBIT");
@@ -77,13 +80,13 @@ public class AssertJExamples {
         }
 
         class Home {
-            Address address = new Address();
+            final Address address = new Address();
             Date ownedSince;
         }
         class Person {
-            String name;
-            double height;
-            Home home = new Home();
+            final String name;
+            final double height;
+            final Home home = new Home();
 
             Person(String s, double h)
             {
@@ -118,13 +121,13 @@ public class AssertJExamples {
         }
 
         class Home {
-            Address address = new Address();
+            final Address address = new Address();
         }
 
         class Person {
-            String name;
-            double height;
-            Home home = new Home();
+            final String name;
+            final double height;
+            final Home home = new Home();
 
             Person(String s, double h)
             {
