@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Guava tests">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/antora.yml" beforeDir="false" />
-    </list>
+    <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Delete antora.yml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,13 +160,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681306361260</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Delete antora.yml">
+      <created>1681373194561</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681373194561</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="adding Guava examples" />
     <MESSAGE value="Guava tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Guava tests" />
+    <MESSAGE value="Delete antora.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete antora.yml" />
   </component>
 </project>
