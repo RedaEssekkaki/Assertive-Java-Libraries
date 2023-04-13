@@ -1,0 +1,193 @@
+= Examples of guard clauses from https://github.com/apache/commons-lang[Apache Commons]'s library =
+
+Apache commons is a multi-role library. Its https://github.com/apache/commons-lang/blob/master/src/main/java/org/apache/commons/lang3/Validate.java[Validate.java] class is designed to serve as guard clauses.
+
+Guard clauses are build as such: `Validate.[Condition]([tested value].[optional message].[optional value(s) for the formatted message])`. The conditions are large panel of check (from `isTrue` to `noNullElements`).
+
+As they are guard clauses, in order to test them, we will create a small private class, and use these clauses inside the different methods to prevent any issue caused by the user.
+
+Since the test are going to be necessarily false for them to work, we will use try-catch blocks to catch the exception, and throw errors if these exception aren't caught.
+
+== Private class: ==
+
+The `StudentGrade` class consist of an `ArrayList` of `Double`, the different grades of a student, and methods to interact with them.
+
+.Hide/Show class code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+private class StudentGrade {
+    private ArrayList<Double> grades = new ArrayList<>(8);
+
+    public void set(ArrayList<Double> newGrades) {
+        Validate.isTrue(newGrades.size() == 8, "You can't have more or less grades than you have courses: current %d ; required 8", newGrades.size());
+        this.grades = newGrades;
+    }
+
+    public ArrayList<Double> get() {
+        return grades;
+    }
+
+    // Sets individual course's grade
+    public void setGrade(int courseNumber, Double newGrade) {
+        Validate.validIndex(this.grades, courseNumber, "There are only 8 courses in this school.");
+        Validate.notNull(newGrade, "You can't have a null grade.");
+        this.grades.set(courseNumber - 1, newGrade);
+    }
+
+    @org.jetbrains.annotations.NotNull
+    public Double avg () {
+        Validate.notEmpty(grades, "You must have a grade for each course");
+        Double divisor = Double.valueOf(0.0);
+        Double divider = Double.valueOf(0.0);
+
+        for (Double each : grades) {
+            Validate.isTrue(each >= 0, "A grade cannot be lesser than 0: %d", each);
+            divisor += each;
+            divider += Double.valueOf(1.0);
+        }
+        return divisor / divider;
+    }
+}
+
+----
+====
+
+== Tests on StudentGrade: ==
+
+All these tests are destined to fail, hence the use of `fail("This test is supposed to fail");` and `catch ([expectedException] expected) {}` statements.
+
+Test setup:
+
+.Hide/Show test setup code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+private StudentGrade testedStudent = new StudentGrade();
+
+@BeforeEach
+public void setup () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+        add(14.0);
+    }};
+    testedStudent.set(grades);
+}
+
+----
+====
+
+Test max/min size: ensure that it is impossible to set an Array larger or smaller than expected.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testSetMoreThan8Grades () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+        add(14.0);
+        add(14.0);
+    }};
+    try {
+        testedStudent.set(grades);
+        fail("Ths test is supposed to fail.");
+    } catch (IllegalArgumentException expected) {}
+}
+
+@Test
+public void testSetLessThan8grades () {
+    ArrayList<Double> grades = new ArrayList<Double>() {{
+        add(12.5);
+        add(5.25);
+        add(8.75);
+        add(15.5);
+        add(18.0);
+        add(11.25);
+        add(13.75);
+    }};
+    try {
+        testedStudent.set(grades);
+        fail("This test is supposed to fail.");
+    } catch (IllegalArgumentException expected) {}
+}
+
+----
+====
+
+Test insert: ensure that inserted value cannot be null.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testInsertNull () {
+    try {
+        testedStudent.setGrade(0, null);
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
+}
+
+----
+====
+
+Test bounds: ensure that it is impossible to insert value out of the Array's limits.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testInsertOutOfBound () {
+    try {
+        testedStudent.setGrade(12, 18.0);
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
+}
+
+----
+====
+
+Test AVG: ensure that it is impossible for a student to have a negative grade when his average grade is calculated.
+
+.Hide/Show test code
+[%collapsible%open]
+====
+[source, language = "java"]
+----
+
+@Test
+public void testAVG () {
+    try {
+        testedStudent.setGrade(5, -2.0);
+        Double temp = testedStudent.avg();
+        fail("This test is supposed to fail.");
+    } catch (IndexOutOfBoundsException expected) {}
+}
+
+----
+====

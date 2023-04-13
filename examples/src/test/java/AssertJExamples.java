@@ -158,11 +158,6 @@ public class AssertJExamples {
                 .isEqualTo(sherlock);
     }
 
-
-    @Rule
-    public final JUnitSoftAssertions softly3 = new JUnitSoftAssertions();
-
-
     @Test
     void basic_soft_assertions_example() {
         SoftAssertions softly = new SoftAssertions();
@@ -187,10 +182,10 @@ public class AssertJExamples {
 
     @Test
     void assertSoftly_example() {
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat("George Martin").as("great authors").isEqualTo("JRR Tolkien");
-            softly.assertThat(42).as("response to Everything").isGreaterThan(0);
-            softly.assertThat("Sauron").isEqualTo("Sauron");
+        SoftAssertions.assertSoftly(softly3 -> {
+            softly3.assertThat("George Martin").as("great authors").isEqualTo("JRR Tolkien");
+            softly3.assertThat(42).as("response to Everything").isGreaterThan(0);
+            softly3.assertThat("Sauron").isEqualTo("Sauron");
             // no need to call assertAll(), assertSoftly does it for us.
         });
     }

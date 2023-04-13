@@ -71,7 +71,15 @@ public class ApacheCommonsExamples {
         try {
             testedStudent.setGrade(0, null);
             fail("This test is supposed to fail.");
-        } catch (IllegalArgumentException expected) {}
+        } catch (IndexOutOfBoundsException expected) {}
+    }
+
+    @Test
+    public void testInsertOutOfBound () {
+        try {
+            testedStudent.setGrade(12, 18.0);
+            fail("This test is supposed to fail.");
+        } catch (IndexOutOfBoundsException expected) {}
     }
 
     @Test
@@ -100,7 +108,7 @@ public class ApacheCommonsExamples {
 
         // Sets individual course's grade
         public void setGrade(int courseNumber, Double newGrade) {
-            Validate.inclusiveBetween(1, 8, courseNumber, "There are only 8 courses in this school.");
+            Validate.validIndex(this.grades, courseNumber, "There are only 8 courses in this school.");
             Validate.notNull(newGrade, "You can't have a null grade.");
             this.grades.set(courseNumber - 1, newGrade);
         }
