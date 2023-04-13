@@ -6,7 +6,8 @@ site:
 content:
   sources:
     - url: https://gitlab.univ-nantes.fr/E203173Q/example-assertions.git
-      start_path: examples/docs/antora/
+      start_path: examples/docs/antora
+
       credentials:
         username: '{env.GL_USERNAME}'
         password: '{env.GL_PASSWORD}'
