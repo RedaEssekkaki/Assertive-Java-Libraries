@@ -35,8 +35,8 @@ public class TruthExamples {
 
     @Test
     /**
-     * Truth has a suite of assertions made specifically for floats, that allow for
-     * accounting for the inherent margin of error Floating Point Operations create
+     * Truth has a suite of assertions made specifically for floats, that allow to
+     * account for the inherent margin of error Floating Point Operations create
      */
     public void floatTests()
     {
@@ -54,7 +54,7 @@ public class TruthExamples {
     @Test
     /**
      * Truth has a number of tools for strings, such as regular expressions, seeing if a string ends , starts or contains
-     * a string of characters. This can make testing that data is formed correctly easy
+     * a string of characters. This can make testing that data is formatted correctly easy
      */
     public void StringTests()
     {
@@ -162,7 +162,7 @@ public class TruthExamples {
     /**
      * Truth also allows assertions on classes and exceptions
      */
-    public void micellaniousTests()
+    public void miscellaneousTests()
     {
         assertThat(ArrayList.class).isAssignableTo(Iterable.class);
 

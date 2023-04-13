@@ -1,6 +1,5 @@
 site:
-  title: Your Project Documentation
-  url: https://example.com/docs
+  title: Example Assertions Documentation
   start_page: documentation::index.adoc
 
 content:

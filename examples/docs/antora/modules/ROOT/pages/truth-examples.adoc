@@ -1,0 +1,237 @@
+= Examples of assertions from the https://truth.dev[Truth] library =
+
+Truth is a library developed by Google's https://github.com/google/guava[guava] team that provides methods to perform assertions in tests.
+
+it uses the following pattern : `assertThat(actual value).is{Condition}(expected value)`
+The condition can be a wide variety of different tests, such as equality, numerical comparisons, if a element is contained in a collection, tests on strings, and many others.
+
+.To try and familiarize ourselves with the library, we built a few tests on different kinds of objects :
+* Simple tests on integers
+* Tests on floating point numbers
+* Tests on Strings
+* Tests on objects implementing the Iterable interface
+* Tests to verify Uni and Bi Directional associations, as a more concrete use case
+* Tests using the "expect" workflow, similar to soft assertions in AssertJ
+* And more miscellaneous tests
+
+== Using assertWithMessage ==
+
+While assertions can be made using the `assertThat()` method, another way to do so is by using the `assertWithMessage("message string").that()` method, which will prepend the message to the usual output when a test fails. this can make it easier to understand the context of the test.
+
+
+== Test examples : ==
+=== Simple tests on integers ===
+Truth can make writing equality and comparative assertions quite easy
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+Integer i = 20;
+Integer j = 30;
+
+assertThat(i).isInstanceOf(Integer.class);
+
+assertThat(i).isEqualTo(20);
+
+assertThat(j).isGreaterThan(i);
+
+assertThat(i).isEqualTo(10);
+----
+====
+Truth provides a wide variety of tests on numbers, such as `isGreater , isEqual , isIn(Range) , isAtMost` which enable for clear and easy to read tests
+
+=== Tests on floating point numbers ===
+Truth has a suite of assertions made specifically for floats, that allow to account for the inherent margin of error Floating Point Operations create
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+float f1 = 1.0f;
+float f2 = 1.1f;
+
+
+assertThat(f1).isWithin(0.11f).of(f2);
+
+assertWithMessage("When not using tolerances, using floats can be difficult \n" +
+                "Here, we check that 0.1f+0.1f+0.1 is equal to 0.3f, with no tolerance").
+                that(0.1f+0.1f+0.1).isEqualTo(0.3f);
+----
+====
+
+the second test will not be passing as the imprecision of floating point arithmetics will lead to 0.1+0.1+0.1 being equal to 0.3000000029802322
+
+
+=== Tests on strings ===
+
+Truth has a number of tools for strings, such as regular expressions, seeing if a string ends , starts or contains a string of characters. This can make testing that data is formatted correctly easy
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+String s1 = "naomod";
+String s2 = "nao";
+
+assertThat(s1).startsWith("nao");
+assertThat(s1).contains("mo");
+
+assertWithMessage("missing 'mod' at end of string").that(s1).endsWith("mod");
+assertWithMessage("missing 'mod' at end of string").that(s2).endsWith("mod");
+
+----
+====
+
+=== Tests on objects implementing the Iterable interface ===
+
+Truth has a number of methods to make assertions on Iterable types, for example testing if a iterable contains an element, multiple elements or exactly some elements and no other.
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+ArrayList<Integer> list1 = new ArrayList<Integer>();
+
+for(int i = 0; i<10; i++)
+{
+list1.add(i);
+}
+
+assertThat(list1).contains(5);
+assertThat(list1).containsAtLeast(1,3,4);
+assertThat(list1).isInOrder();
+assertThat(list1).isNotEmpty();
+
+assertWithMessage("List does not contain the number 16").that(list1).contains(16);
+----
+====
+
+=== Tests to verify Uni and Bi Directional associations, as a more concrete use case ==
+
+These tests are less about being clear case by case examples of using one particular method, but more a more concrete implementation of the Truth assertions into a test suite.
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+@Test
+    public void UniDirectionalTests()
+    {
+        UniDirectionalAssociation<Integer> UDA = new UniDirectionalAssociation<>();
+        Integer Int1 = 10;
+        Integer Int2 = 20;
+
+
+        assertThat(UDA.isSet()).isFalse();
+
+        UDA.setAssociatedValue(Int1);
+
+        assertThat(UDA.getAssociatedValue()).isEqualTo(10);
+        assertThat(UDA.isSet()).isTrue();
+
+        UDA.setAssociatedValue(Int2);
+
+        assertThat(UDA.getAssociatedValue()).isEqualTo(Int2);
+
+        assertWithMessage("THis test is supposed to fail").that(UDA.getAssociatedValue()).isSameInstanceAs(Int1);
+
+
+    }
+
+    @Test
+    public void BiDirectionalTest()
+    {
+        BiDirectionalAssociation<Integer> BDA1 = new BiDirectionalAssociation<>();
+        BiDirectionalAssociation<Integer> BDA2 = new BiDirectionalAssociation<>();
+        BiDirectionalAssociation<Integer> BDA3 = new BiDirectionalAssociation<>();
+
+
+        BDA1.set(BDA2);
+
+        assertThat(BDA2.get()).isSameInstanceAs(BDA1);
+        assertThat(BDA1.get()).isSameInstanceAs(BDA2);
+
+        BDA1.set(BDA3);
+
+        assertThat(BDA2.get()).isNull();
+        assertThat(BDA3.get()).isSameInstanceAs(BDA1);
+
+
+        assertWithMessage("This test is supposed to fail").that(BDA1.get()).isSameInstanceAs(BDA2);
+
+    }
+
+----
+====
+
+
+=== Tests using the "expect" workflow, ===
+
+Using expect instead of assert allows more than one test to fail, same as with soft assertions in AssertJ
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+  expect.withMessage("using expect instead of assert allows more than one test to fail, \n" +
+                " same as with soft assertions in AssertJ").that(10).isEqualTo(20);
+
+expect.withMessage("as you can see by multiple tests failing instead of only showing the first one that fails \n" +
+                "and then ending the test without running the other assertions").that(ImmutableList.of(10,20,30,40)).contains(55);
+expect.that(25).isNotNull();
+
+expect.that(20.789456).isWithin(1).of(20);
+        expect.that(0.1f+0.1f+0.1).isEqualTo(0.3f);
+----
+====
+
+.Hide output
+[%collapsible%open]
+====
+[source]
+----
+3 expectations failed:
+  1. using expect instead of assert allows more than one test to fail,
+      same as with soft assertions in AssertJ
+     expected: 20
+     but was : 10
+     	at TruthExamples.softAssertions(TruthExamples.java:151)
+
+  2. as you can see by multiple tests failing instead of only showing the first one that fails
+     and then ending the test without running the other assertions
+     expected to contain: 55
+     but was            : [10, 20, 30, 40]
+     	at TruthExamples.softAssertions(TruthExamples.java:153)
+
+  3. expected: 0.3
+     but was : 0.3000000029802322
+     	at TruthExamples.softAssertions(TruthExamples.java:156)
+----
+====
+
+=== Miscellaneous tests ===
+These tests are less specific than the ones done on other types. Here are included tests on Exceptions and Classes :
+
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+assertThat(ArrayList.class).isAssignableTo(Iterable.class);
+
+assertThat(new IllegalArgumentException("test exception")).hasMessageThat().isEqualTo("test exception");
+
+assertWithMessage("this test is supposed to fail").that(Integer.class).isAssignableTo(HashMap.class);
+----
+====
+
+These tests can be used to check if a class properly inherits from another or implements an interface.
+The tests on Exceptions can ensure that a program fails in the way it is expected to.
