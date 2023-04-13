@@ -9,7 +9,6 @@ content:
       credentials:
         username: '{env.GL_USERNAME}'
         password: '{env.GL_PASSWORD}'
-      branches: main
 
 ui:
   bundle:
