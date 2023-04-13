@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Guava tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/test/java/GuavaExamples.java" afterDir="false" />
+    <list default="true" id="fe94e8e0-cdf8-4c13-9252-e02b6f52101e" name="Changes" comment="Implementing antora documentation">
+      <change afterPath="$PROJECT_DIR$/antora.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/docs/antora/playbook.yml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/docs/antora/playbook.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,19 +41,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/naomod/Bureau/guava",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/naomod/Bureau/example-assertions/examples/src/test/java/TruthExamples.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.excludes&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.GuavaExamples.testNotNullArgument_successful">
+}</component>
+  <component name="RunManager">
     <configuration name="GuavaExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
@@ -63,21 +63,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuavaExamples.testCheckArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GuavaExamples.testCheckState_complexMessage_failure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="examples" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
-      <option name="METHOD_NAME" value="testCheckArgument" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GuavaExamples.testCheckState_complexMessage_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="examples" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GuavaExamples" />
-      <option name="METHOD_NAME" value="testCheckState_complexMessage_success" />
+      <option name="METHOD_NAME" value="testCheckState_complexMessage_failure" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -103,13 +93,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TruthExamples" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="examples" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TruthExamples" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GuavaExamples" />
+        <item itemvalue="JUnit.TruthExamples" />
+        <item itemvalue="JUnit.GuavaExamples.testCheckState_complexMessage_failure" />
         <item itemvalue="JUnit.GuavaExamples.testNotNullArgument_successful" />
         <item itemvalue="JUnit.GuavaExamples.testNotNullArgument" />
-        <item itemvalue="JUnit.GuavaExamples.testCheckState_complexMessage_success" />
-        <item itemvalue="JUnit.GuavaExamples" />
-        <item itemvalue="JUnit.GuavaExamples.testCheckArgument" />
       </list>
     </recent_temporary>
   </component>
@@ -150,13 +149,43 @@
       <option name="project" value="LOCAL" />
       <updated>1681304937295</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Guava tests">
+      <created>1681306037333</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681306037333</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Guava tests">
+      <created>1681306361260</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681306361260</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Delete antora.yml">
+      <created>1681373194561</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681373194561</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implementing antora documentation">
+      <created>1681375097673</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681375097673</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="adding Guava examples" />
     <MESSAGE value="Guava tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Guava tests" />
+    <MESSAGE value="Delete antora.yml" />
+    <MESSAGE value="Implementing antora documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing antora documentation" />
   </component>
 </project>

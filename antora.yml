@@ -1,0 +1,10 @@
+name: Test
+title: Documentation
+version: 1.5.6
+start_page: inline-text-formatting.adoc
+asciidoc:
+  attributes:
+    source-language: asciidoc@
+    table-caption: false
+  nav:
+    - nav.adoc

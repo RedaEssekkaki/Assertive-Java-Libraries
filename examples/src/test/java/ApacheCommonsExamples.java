@@ -17,7 +17,7 @@ public class ApacheCommonsExamples {
 
     @BeforeEach
     public void setup () {
-        ArrayList<Double> grades = new ArrayList<>() {{
+        ArrayList<Double> grades = new ArrayList<Double>() {{
             add(12.5);
             add(5.25);
             add(8.75);
@@ -32,7 +32,7 @@ public class ApacheCommonsExamples {
 
     @Test
     public void testSetMoreThan8Grades () {
-        ArrayList<Double> grades = new ArrayList<>() {{
+        ArrayList<Double> grades = new ArrayList<Double>() {{
             add(12.5);
             add(5.25);
             add(8.75);
@@ -51,7 +51,7 @@ public class ApacheCommonsExamples {
 
     @Test
     public void testSetLessThan8grades () {
-        ArrayList<Double> grades = new ArrayList<>() {{
+        ArrayList<Double> grades = new ArrayList<Double>() {{
             add(12.5);
             add(5.25);
             add(8.75);

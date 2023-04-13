@@ -1,0 +1,21 @@
+site:
+  title: Your Project Documentation
+  url: https://example.com/docs
+  start_page: your-component::index.adoc
+
+content:
+  sources:
+    - url: https://gitlab.univ-nantes.fr/E203173Q/example-assertions.git
+      credentials:
+        username: '{env.GL_USERNAME}'
+        password: '{env.GL_PASSWORD}'
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+
+asciidoc:
+  attributes:
+    page-pagination: top bottom
+
