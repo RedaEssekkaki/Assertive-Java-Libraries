@@ -10,7 +10,6 @@ content:
         username: '{env.GL_USERNAME}'
         password: '{env.GL_PASSWORD}'
       branches: main
-      start_path: 'docs/antora'
 
 ui:
   bundle:
