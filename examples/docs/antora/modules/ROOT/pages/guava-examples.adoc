@@ -4,7 +4,8 @@ Guava is a set of core Java libraries from Google that includes new collection t
 
 .*These examples are to test the main utilities regarding preconditions provided by this library :*
 
-[square]
+[circle]
 ** *Using and avoiding null*: null can be ambiguous, can cause confusing errors, and is sometimes just plain unpleasant. Many Guava utilities reject and fail fast on nulls, rather than accepting them blindly.
 
-** Guava provides a number of precondition checking utilities in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class.
+** Guava provides a number of *precondition checking utilities* in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class.
+
