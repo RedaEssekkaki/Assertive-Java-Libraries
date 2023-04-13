@@ -3,7 +3,160 @@
 AssertJ is a library of assertions in Java, created by Joel Costigliola. Its goals are to make assertions more clear, more readable and to give helpful error messages.
 
 
-We have a lot of possible assertions, often in this form : `AssertThat(object1).is__Condition__(object2)`. It
+We have a lot of possible assertions, often in this form : `AssertThat(object1).is__Condition__(object2)`. It verifies that the condition correctly links the two objects. We can have several's conditions in succession. AssertJ allows to provide assertions for JDK, Guava, Joda Time, Neo4J and for relational database types.
+
+We made a few tests to help to understand and to master this library :
+
+== Using assert.as() ==
+We can use .as("__String__") to add a name to the assertion. It will write this anme if the test do not pass.
+
+== Test examples : ==
+=== Simple tests ===
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+String mot = "The Lord of the Rings";
+assertThat(mot).as("raté")
+    .isNotNull()
+    .startsWith("The")
+    .contains("Lord")
+    .endsWith("Rings");
+----
+====
+AssertJ has a lot of testing operations on String and collections (for example : startsWith, contains, endWith, ...) and on almost all other types.
+
+=== Recursive Tests ===
+
+As we can use objects with multiple classes, we can use the AssertJ _recusive comparison_.
+
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+        class Address {
+            int number;
+            String street;
+        }
+
+        class Home {
+            final Address address = new Address();
+            Date ownedSince;
+        }
+
+        class Person {
+            final String name;
+            final double height;
+            final Home home = new Home();
+
+            Person(String s, double h)
+            {
+                this.name = s;
+                this.height = h;
+            }
+        }
+
+        Person sherlock = new Person("Sherlock", 1.80);
+        sherlock.home.ownedSince = new Date(123);
+        sherlock.home.address.street = "Baker Street";
+        sherlock.home.address.number = 221;
+
+        Person sherlock2 = new Person("Sherlock", 1.80);
+        sherlock2.home.ownedSince = new Date(123);
+        sherlock2.home.address.street = "Baker Street";
+        sherlock2.home.address.number = 221;
+
+        // assertion succeeds as the data of both objects are the same.
+        assertThat(sherlock).usingRecursiveComparison().as("check %s", sherlock).isEqualTo(sherlock2);
+
+----
+====
+
+The `usingRecursiveComparison()` will compare all shared fields of the two objects, but only on the one's present in the object1 (if the second object has more field than the first, they will not be tested).
+
+=== Soft Assertions ===
+
+With soft assertions AssertJ collects all assertion errors instead of stopping at the first one.
+It is useful for long tests as we can work on all of the reported errors rather than with lot of "alone" assertions.
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+    void assertSoftly_example() {
+        SoftAssertions.assertSoftly(softly3 -> {
+            softly3.assertThat("George Martin").as("great authors").isEqualTo("JRR Tolkien");
+            softly3.assertThat(42).as("response to Everything").isGreaterThan(0);
+            softly3.assertThat("Sauron").isEqualTo("Sauron");
+            // no need to call assertAll(), assertSoftly does it for us.
+        });
+    }
+----
+====
+
+=== Collector Assertions ===
+
+"AssertJ allows to perform an action after an AssertionError is collected.
+
+The action is specified by the AfterAssertionErrorCollected functional interface which can be expressed as lambda, to register your callback call setAfterAssertionErrorCollected as shown below:"
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+ void testCollectorAssertion() {
+        SoftAssertions softlyy = new SoftAssertions();
+        StringBuilder reportBuilder = new StringBuilder(format("Assertions report:%n"));
+
+        // register our callback
+        softlyy.setAfterAssertionErrorCollected(error -> reportBuilder.append(format("------------------%n%s%n", error.getMessage())));
+        // the AssertionError corresponding to the failing assertions are registered in the report
+        softlyy.assertThat("The Beatles").isEqualTo("The Rolling Stones");
+        softlyy.assertThat(123).isEqualTo(123).isEqualTo(456);
+        softlyy.assertAll();
+    }
+----
+====
+
+
+
+=== Conditional Assertions ===
+
+We can create some conditions and call it with `AssertThat(__object__).is(__myCondition__)` or `has(__myCondition__)` (both do the same). Then we can add some operators on the conditions for example : `not(__Condition__)`, `allOf(__Condition__)` and `anyOf(__Condition__)`
+
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+    void allOfCondition(){
+        Set<String> JEDIS = newLinkedHashSet("Luke", "Yoda", "Obiwan");
+        Condition<String> jediPower = new Condition<>(JEDIS::contains, "jedi power");
+        Condition<String> jedi = new Condition<String>(JEDIS::contains, "jedi");
+        List<String> SITHS = list("Sidious", "Vader", "Plagueis");
+        Condition<String> sith = new Condition<>(SITHS::contains, "sith");
+
+        assertThat("Vader").is(anyOf(jedi, sith));
+        assertThat("Solo").is(allOf(not(jedi), not(sith)));
+    }
+
+----
+====
+
+
+
+
+
+
+
+
+
 
 
 CAUTION: Bonjour +
