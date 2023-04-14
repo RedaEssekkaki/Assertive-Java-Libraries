@@ -55,9 +55,8 @@ public class GuavaHandshake {
 
         BDA_0.set(BDA_1);
         //test bda_0 & bda_1 associated
-        test = Objects.equal(BDA_0.get(), BDA_1);
-        test = Objects.equal(BDA_1.get(), BDA_0) && test;
-        checkArgument(test, "BD0 et BD1 doivent etre liés");
+        checkArgument(Objects.equal(BDA_0.get(), BDA_1), "BD0 et BD1 doivent etre liés");
+        checkArgument(Objects.equal(BDA_1.get(), BDA_0), "BD1 et BD0 doivent etre liés");
 
         BDA_1.set(BDA_2);
         //test bda_0 is null
@@ -69,16 +68,14 @@ public class GuavaHandshake {
         }
 
         //test bda_2 & bda_1 linked
-        test = Objects.equal(BDA_2.get(), BDA_1);
-        test = Objects.equal(BDA_1.get(), BDA_2) && test;
-        checkArgument(test, "BD2 et BD1 doivent etre liés");
+        checkArgument(Objects.equal(BDA_2.get(), BDA_1), "BD2 et BD1 doivent etre liés");
+        checkArgument(Objects.equal(BDA_1.get(), BDA_2), "BD1 et BD2 doivent etre liés");
 
 
         BDA_3.set(BDA_0);
         //test bda_3 & bda_0 linked
-        test = Objects.equal(BDA_3.get(), BDA_0);
-        test = Objects.equal(BDA_0.get(), BDA_3) && test;
-        checkArgument(test, "BD3 et BD0 doivent etre liés");
+        checkArgument(Objects.equal(BDA_3.get(), BDA_0), "BD3 et BD0 doivent etre liés");
+        checkArgument(Objects.equal(BDA_0.get(), BDA_3), "BD0 et BD3 doivent etre liés");
 
 
 

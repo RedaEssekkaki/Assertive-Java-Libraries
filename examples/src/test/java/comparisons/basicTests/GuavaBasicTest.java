@@ -28,17 +28,13 @@ public class GuavaBasicTest {
     void testConstructor()
     {
         //test that all attributes set by constructor in setup() are correct
-        test = Objects.equal(dwarf.getName(), "Jeremy");
-        checkArgument(test, "Wrong name");
+        checkArgument(Objects.equal(dwarf.getName(), "Jeremy"), "Wrong name");
 
-        test = Objects.equal(dwarf.getSize(), 80.4);
-        checkArgument(test, "Wrong size");
+        checkArgument(Objects.equal(dwarf.getSize(), 80.4), "Wrong size");
 
-        test = Objects.equal(dwarf.getWeight(), 90.3);
-        checkArgument(test, "Wrong weight");
+        checkArgument(Objects.equal(dwarf.getWeight(), 90.3), "Wrong weight");
 
         checkArgument(!dwarf.isBearded(), "We should not have beard");
-        fail("Expected false but is true");
 
     }
 
@@ -69,12 +65,8 @@ public class GuavaBasicTest {
         dwarf.shave();
 
         //test dwarf has no beard
-        try{
-            checkArgument(dwarf.isBearded(), "We should not have beard");
-            fail("Expected true but is false");
-        }
-        catch (IllegalArgumentException expected){
-        }
+        checkArgument(!dwarf.isBearded(), "We should not have beard");
+
 
         dwarf.growBeard();
 
@@ -93,12 +85,8 @@ public class GuavaBasicTest {
 
         dwarf.sleep();
         //test that dwarf is NOT hungover
-        try{
-            checkArgument(dwarf.isHungover(), "Dwarf should not be hungover");
-            fail("Expected true but is false");
-        }
-        catch (IllegalArgumentException expected){
-        }
+        checkArgument(!dwarf.isHungover(), "Dwarf should not be hungover");
+
     }
 
     @Test
@@ -127,12 +115,8 @@ public class GuavaBasicTest {
         checkArgument(test, "Wrong song");
 
         //test that dwarf.getLearnedSongs() does not contain the song he shouldve forgotten
-        try{
-            checkArgument(dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
-            fail("Expected true but is false");
-        }
-        catch (IllegalArgumentException expected){
-        }
+        checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
+
 
 
     }
