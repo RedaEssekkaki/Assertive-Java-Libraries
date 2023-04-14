@@ -71,6 +71,10 @@ for example the checkArgument method, in its basic form with no extra arguments 
 Preconditions.checkArgument(boolean argument);
 
 The test :
+
+.Hide source code
+[%collapsible%open]
+====
 [source, Java]
     /**
      * Testing the checkArgument Guard in Guava
@@ -78,8 +82,14 @@ The test :
     @Test
     public void testCheckArgument() {
         try {
-            Preconditions.checkArgument(false);
+            Preconditions.checkArgument(false, "The argument given is false");
             fail("no exception thrown, IllegalArgumentException expected");
         } catch (IllegalArgumentException expected) {
+            System.out.println("correctly catched a " + expected );
         }
     }
+====
+The expected output :
+
+[source, bash]
+correctly catched a java.lang.IllegalArgumentException: The argument given is false

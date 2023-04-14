@@ -17,9 +17,10 @@ public class GuavaExamples {
     @Test
     public void testCheckArgument() {
         try {
-            Preconditions.checkArgument(false);
+            Preconditions.checkArgument(false, "The argument given is false");
             fail("no exception thrown, IllegalArgumentException expected");
         } catch (IllegalArgumentException expected) {
+            System.out.println("correctly catched a " + expected );
         }
     }
     @Test
@@ -37,6 +38,7 @@ public class GuavaExamples {
             fail("A NullPointerException was expected");
         }
         catch (NullPointerException expected){
+            System.out.println("correctly catched a " + expected );
         }
     }
     @Test
