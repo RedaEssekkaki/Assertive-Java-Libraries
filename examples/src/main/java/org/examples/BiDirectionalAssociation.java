@@ -16,12 +16,12 @@ public class BiDirectionalAssociation<E> {
         obj.basicSet(this);
     }
 
-    public void basicSet(BiDirectionalAssociation<E>  obj)
+    private void basicSet(BiDirectionalAssociation<E>  obj)
     {
         this.associatedObject = obj;
     }
 
-    public void UnSet()
+    public void unSet()
     {
         if (this.associatedObject != null)
            this.associatedObject.basicUnSet();
@@ -29,7 +29,7 @@ public class BiDirectionalAssociation<E> {
         this.associatedObject = null;
     }
 
-    public void basicUnSet()
+    private void basicUnSet()
     {
         this.associatedObject = null;
     }
