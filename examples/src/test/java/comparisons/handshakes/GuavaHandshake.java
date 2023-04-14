@@ -68,30 +68,17 @@ public class GuavaHandshake {
         }
 
         //test bda_2 & bda_1 linked
+        test = Objects.equal(BDA_2.get(), BDA_1);
+        test = Objects.equal(BDA_1.get(), BDA_2) && test;
+        checkArgument(test, "BD2 et BD1 doivent etre liés");
 
-        test = Objects.equal(BDA_2.get(), BDA_1.get());
-
-        for (BiDirectionalAssociation asso : assoList) {
-            try{
-                checkArgument(test, "BD2 et BD1 doivent etre liés");
-                fail("A NullPointerException was expected");
-            }
-            catch (NullPointerException expected){
-            }
-        }
 
         BDA_3.set(BDA_0);
         //test bda_3 & bda_0 linked
-        test = Objects.equal(BDA_3.get(), BDA_0.get());
+        test = Objects.equal(BDA_3.get(), BDA_0);
+        test = Objects.equal(BDA_0.get(), BDA_3) && test;
+        checkArgument(test, "BD3 et BD0 doivent etre liés");
 
-        for (BiDirectionalAssociation asso : assoList) {
-            try{
-                checkArgument(test, "BD3 et BD0 doivent etre liés");
-                fail("A NullPointerException was expected");
-            }
-            catch (NullPointerException expected){
-            }
-        }
 
 
     }
@@ -109,13 +96,35 @@ public class GuavaHandshake {
 
         BDA_3.unSet();
         //test BDA-3 & BDA_2 get() null
-        checkNotNull(BDA_2.get(), "Fiels must be null");
-        checkNotNull(BDA_3.get(), "Fiels must be null");
+        try{
+            checkNotNull(BDA_2.get(), "Fiels must be null");
+            fail("A NullPointerException was expected");
+        }
+        catch (NullPointerException expected){
+        }
+        try{
+            checkNotNull(BDA_3.get(), "Fiels must be null");
+            fail("A NullPointerException was expected");
+        }
+        catch (NullPointerException expected){
+        }
+
 
 
         BDA_0.unSet();
         //test bda_0 & bda_1 get() null
-        checkNotNull(BDA_0.get(), "Fiels must be null");
-        checkNotNull(BDA_1.get(), "Fiels must be null");
+        try{
+            checkNotNull(BDA_0.get(), "Fiels must be null");
+            fail("A NullPointerException was expected");
+        }
+        catch (NullPointerException expected){
+        }
+        try{
+            checkNotNull(BDA_1.get(), "Fiels must be null");
+            fail("A NullPointerException was expected");
+        }
+        catch (NullPointerException expected){
+        }
+
     }
 }
