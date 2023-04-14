@@ -1,11 +1,11 @@
-package org.examples;
+package org.examples.Dwarf;
 
 import java.util.ArrayList;
 public class SongRepository {
 
     private ArrayList<String> songs = new ArrayList<>();
 
-    public void add (String song) {
+    void add (String song) {
         this.songs.add(song);
     }
 
@@ -13,11 +13,13 @@ public class SongRepository {
         return this.songs.contains(song);
     }
 
-    public String remove (int i) {
+    String remove (int i) {
         return songs.remove(i);
     }
 
     public int size () {
         return songs.size();
     }
+
+    public boolean isEmpty(){return songs.isEmpty();}
 }
