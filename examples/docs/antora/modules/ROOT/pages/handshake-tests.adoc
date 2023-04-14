@@ -1,5 +1,5 @@
 = Tests on the use case of handshakes =
 
-== In this section we propose a comparison of the different libraries on an instance on bidirectional associations.
+== In this section we propose a comparison of the different libraries on an instance of bidirectional associations.
 
 These libraries have some similarities in their syntax and mechanism of exception raising, like the Truth and Assertj library
