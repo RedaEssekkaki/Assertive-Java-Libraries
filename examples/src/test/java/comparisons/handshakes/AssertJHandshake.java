@@ -39,15 +39,15 @@ public class AssertJHandshake {
         BDA_0.set(BDA_1);
 
         //test bda_0 & bda_1 associated
-        assertThat(BDA_0.get()).isEqualTo(BDA_1);
-        assertThat(BDA_1.get()).isEqualTo(BDA_0);
+        assertThat(BDA_0.get()).isSameAs(BDA_1);
+        assertThat(BDA_1.get()).isSameAs(BDA_0);
 
 
         BDA_1.set(BDA_2);
 
         //test bda_2 & bda_1 linked
-        assertThat(BDA_1.get()).isEqualTo(BDA_2);
-        assertThat(BDA_2.get()).isEqualTo(BDA_1);
+        assertThat(BDA_1.get()).isSameAs(BDA_2);
+        assertThat(BDA_2.get()).isSameAs(BDA_1);
 
 
         //test bda_0 is null
@@ -56,8 +56,8 @@ public class AssertJHandshake {
 
         //test bda_3 & bda_0 linked
         BDA_3.set(BDA_0);
-        assertThat(BDA_0.get()).isEqualTo(BDA_3);
-        assertThat(BDA_3.get()).isEqualTo(BDA_0);
+        assertThat(BDA_0.get()).isSameAs(BDA_3);
+        assertThat(BDA_3.get()).isSameAs(BDA_0);
 
     }
 
