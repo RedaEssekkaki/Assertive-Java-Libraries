@@ -36,7 +36,7 @@ AssertJ has a lot of testing operations on String and collections (for example :
 === Recursive Tests ===
 
 As we can use objects with multiple classes, we can use the AssertJ _recusive comparison_.
-
+It compares the values of all the fields of two objects, not just the addresses of the pointers.
 
 .Hide source code
 [%collapsible%open]
