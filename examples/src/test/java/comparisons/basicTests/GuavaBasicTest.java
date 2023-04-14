@@ -1,5 +1,7 @@
 package comparisons.basicTests;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import org.examples.Dwarf.Dwarf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,9 +9,14 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.junit.Assert.fail;
+
 public class GuavaBasicTest {
 
     private Dwarf dwarf;
+    private boolean test;
 
     @BeforeEach
     void setup()
@@ -21,6 +28,21 @@ public class GuavaBasicTest {
     void testConstructor()
     {
         //test that all attributes set by constructor in setup() are correct
+        test = Objects.equal(dwarf.getName(), "Jeremy");
+        checkArgument(test, "Wrong name");
+
+        test = Objects.equal(dwarf.getSize(), 80.4);
+        checkArgument(test, "Wrong size");
+
+        test = Objects.equal(dwarf.getWeight(), 90.3);
+        checkArgument(test, "Wrong weight");
+
+        try{
+            checkArgument(dwarf.isBearded(), "We should not have beard");
+            fail("Expected true but is false");
+        }
+        catch (IllegalArgumentException expected){
+        }
     }
 
     @Test
@@ -29,6 +51,8 @@ public class GuavaBasicTest {
         dwarf.setSize(40.0);
 
         //test size is properly set
+        test = Objects.equal(dwarf.getSize(), 40.0);
+        checkArgument(test, "Wrong size");
     }
 
     @Test
@@ -37,6 +61,9 @@ public class GuavaBasicTest {
         dwarf.setWeight(24.7);
 
         //test weight is properly set
+        test = Objects.equal(dwarf.getWeight(), 24.7);
+        checkArgument(test, "Wrong weight");
+
     }
 
     @Test
@@ -45,10 +72,18 @@ public class GuavaBasicTest {
         dwarf.shave();
 
         //test dwarf has no beard
+        try{
+            checkArgument(dwarf.isBearded(), "We should not have beard");
+            fail("Expected true but is false");
+        }
+        catch (IllegalArgumentException expected){
+        }
 
         dwarf.growBeard();
 
         //test dwarf has beard
+        checkArgument(dwarf.isBearded(), "We should not have beard");
+
     }
 
     @Test
@@ -56,8 +91,17 @@ public class GuavaBasicTest {
     {
         dwarf.goesToTavern();
         //test that dwarf IS hungover
+        checkArgument(dwarf.isHungover(), "Dwarf should be hungover");
+
+
         dwarf.sleep();
         //test that dwarf is NOT hungover
+        try{
+            checkArgument(dwarf.isHungover(), "Dwarf should not be hungover");
+            fail("Expected true but is false");
+        }
+        catch (IllegalArgumentException expected){
+        }
     }
 
     @Test
@@ -66,6 +110,8 @@ public class GuavaBasicTest {
         String learnedSong = "i am a dwarf and i'm digging a hole";
         dwarf.learnSong(learnedSong);
         //test that dwarf has learned song
+        checkArgument(dwarf.getLearnedSongs().contains(learnedSong));
+
 
         //to intercept print ln
         PrintStream defaultoutput = System.out;
@@ -75,13 +121,21 @@ public class GuavaBasicTest {
         dwarf.goesToTavern();
 
         //Interception of the System.out.println()
-        String sang = intercept.toString();
+        String sang = intercept.toString().replace("\n","");
         System.setOut(defaultoutput);
         System.out.println(sang);
 
         //test that sang == value of the learned song
+        test = Objects.equal(sang, learnedSong);
+        checkArgument(test, "Wrong song");
 
         //test that dwarf.getLearnedSongs() does not contain the song he shouldve forgotten
+        try{
+            checkArgument(dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
+            fail("Expected true but is false");
+        }
+        catch (IllegalArgumentException expected){
+        }
 
 
     }

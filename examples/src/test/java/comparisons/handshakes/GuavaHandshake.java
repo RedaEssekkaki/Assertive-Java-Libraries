@@ -55,8 +55,9 @@ public class GuavaHandshake {
 
         BDA_0.set(BDA_1);
         //test bda_0 & bda_1 associated
-        Objects.equal(BDA_0.get(), BDA_1.get());
-
+        test = Objects.equal(BDA_0.get(), BDA_1);
+        test = Objects.equal(BDA_1.get(), BDA_0) && test;
+        checkArgument(test, "BD0 et BD1 doivent etre liés");
 
         BDA_1.set(BDA_2);
         //test bda_0 is null
