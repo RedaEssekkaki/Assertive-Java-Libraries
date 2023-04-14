@@ -3,9 +3,10 @@ package comparisons.basicTests;
 import org.examples.Dwarf.Dwarf;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-
+import org.apache.commons.lang3.Validate;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Objects;
 
 public class ApacheCommonsBasicTest {
 
@@ -21,6 +22,10 @@ public class ApacheCommonsBasicTest {
     void testConstructor()
     {
         //test that all attributes set by constructor in setup() are correct
+        Validate.isTrue(Objects.equals(dwarf.getName(), "Jeremy"));
+        Validate.isTrue( dwarf.getSize() == 80.4);
+        Validate.isTrue( dwarf.getWeight() == 90.3);
+        Validate.isTrue(!dwarf.isBearded());
     }
 
     @Test
@@ -29,6 +34,7 @@ public class ApacheCommonsBasicTest {
         dwarf.setSize(40.0);
 
         //test size is properly set
+        Validate.isTrue( dwarf.getSize() == 40.0);
     }
 
     @Test
@@ -37,6 +43,7 @@ public class ApacheCommonsBasicTest {
         dwarf.setWeight(24.7);
 
         //test weight is properly set
+        Validate.isTrue( dwarf.getWeight() == 24.7);
     }
 
     @Test
@@ -45,10 +52,12 @@ public class ApacheCommonsBasicTest {
         dwarf.shave();
 
         //test dwarf has no beard
+        Validate.isTrue(!dwarf.isBearded());
 
         dwarf.growBeard();
 
         //test dwarf has beard
+        Validate.isTrue(dwarf.isBearded());
     }
 
     @Test
@@ -66,6 +75,7 @@ public class ApacheCommonsBasicTest {
         String learnedSong = "i am a dwarf and i'm digging a hole";
         dwarf.learnSong(learnedSong);
         //test that dwarf has learned song
+        Validate.isTrue(dwarf.getLearnedSongs().contains(learnedSong));
 
         //to intercept print ln
         PrintStream defaultoutput = System.out;
@@ -75,14 +85,15 @@ public class ApacheCommonsBasicTest {
         dwarf.goesToTavern();
 
         //Interception of the System.out.println()
-        String sang = intercept.toString();
+        String sang = intercept.toString().replace("\n","");
         System.setOut(defaultoutput);
         System.out.println(sang);
 
         //test that sang == value of the learned song
+        Validate.isTrue(sang.equals(learnedSong));
 
         //test that dwarf.getLearnedSongs() does not contain the song he shouldve forgotten
-
+        Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 
     }
 
