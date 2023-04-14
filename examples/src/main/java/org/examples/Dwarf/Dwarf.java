@@ -9,6 +9,8 @@ public class Dwarf {
     private boolean hasBeard;
     private boolean hasHangover;
 
+    private SongRepository knownSongs = new SongRepository();
+
     public String getName() {
         return name;
     }
@@ -42,7 +44,7 @@ public class Dwarf {
         return hasHangover;
     }
 
-    private SongRepository knownSongs = new SongRepository();
+
 
     public Dwarf(String name, double size, double weight, boolean hasBeard) {
         this.name = name;
