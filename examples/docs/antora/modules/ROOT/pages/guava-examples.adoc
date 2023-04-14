@@ -2,13 +2,13 @@
 
 
 [sidebar]
-== Presentation
+== Presentation of Guava
 ====
 Guava is a set of core Java libraries from Google that includes new collection types (such as multimap and multiset), immutable collections, a graph library, and utilities for concurrency, I/O, hashing, caching, primitives, strings, and more. It is widely used on most Java projects within Google, and widely used by many other companies as well.
 ====
 
 [sidebar]
-== Characteristics
+== Characteristics of the library
 ====
 Guava provides a number of *precondition checking utilities* in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class and there is 3 variants for each method.
 This class contains static methods that can help to check whether it was invoked correctly (that is, whether its preconditions were met).
@@ -17,20 +17,16 @@ If the precondition is not met, the Preconditions method throws an unchecked exc
 
 [sidebar]
 == Variants
-====
+
 *As we said, each precondition method has 3 variants :*
 [square]
 * One with no extra arguments
 * An extra Object argument. Any exception is thrown with the error message object.toString().
+* An extra String argument, with an arbitrary number of additional Object arguments. This behaves something like printf, but for GWT compatibility and efficiency, it only allows %s indicators.
 
+NOTE: checkNotNull, checkArgument and checkState have a large number of overloads taking combinations of primitive and Object parameters rather than a varargs array — this allows calls such as those above to avoid both primitive boxing and _varags_ array allocation in the vast majority of cases.
 
-
-
-
-====
-
-
-NOTE: These examples are to test the main utilities regarding preconditions provided by this library :
+These test are to give practical examples of the main utilities regarding preconditions provided by this library :
 
 [sidebar]
 == Preconditions
@@ -65,3 +61,25 @@ NOTE: These examples are to test the main utilities regarding preconditions prov
 
 For more details you can consult the extended version of the description of the methods (for each variant) on https://guava.dev/releases/snapshot/api/docs/com/google/common/base/Preconditions.html[guava preconditions]
 
+[sidebar]
+== The examples
+This section shows some examples of Preconditions in guava so that we can observe the syntax
+
+for example the checkArgument method, in its basic form with no extra arguments :
+
+[source, Java]
+Preconditions.checkArgument(boolean argument);
+
+The test :
+[source, Java]
+    /**
+     * Testing the checkArgument Guard in Guava
+     * */
+    @Test
+    public void testCheckArgument() {
+        try {
+            Preconditions.checkArgument(false);
+            fail("no exception thrown, IllegalArgumentException expected");
+        } catch (IllegalArgumentException expected) {
+        }
+    }
