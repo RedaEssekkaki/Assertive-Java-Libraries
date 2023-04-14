@@ -1,3 +1,5 @@
 .idea/
 examples/.idea/workspace.xml
 build/
+.attach_pid*
+**/.attach_pid*
