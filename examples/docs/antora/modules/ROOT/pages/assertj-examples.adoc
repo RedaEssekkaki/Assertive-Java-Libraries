@@ -1,5 +1,7 @@
 = Examples of assertions from the https://assertj.github.io/doc/[AssertJ] library =
 
+image::assertJlogo.png
+
 AssertJ is a library of assertions in Java, created by Joel Costigliola. Its goals are to make assertions more clear, more readable and to give helpful error messages.
 
 
@@ -28,6 +30,7 @@ assertThat(mot).as("raté")
 ====
 AssertJ has a lot of testing operations on String and collections (for example : startsWith, contains, endWith, ...) and on almost all other types.
 
+[#elevation]
 === Recursive Tests ===
 
 As we can use objects with multiple classes, we can use the AssertJ _recusive comparison_.
