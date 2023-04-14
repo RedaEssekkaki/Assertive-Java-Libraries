@@ -9,7 +9,16 @@ https://gitlab.univ-nantes.fr/atlanmod/commons/[Atlanmod Commons].
 
 == Examples : ==
 
+A few examples of how to use each library.
+
 xref:truth-examples.adoc[Examples of assertions from the Truth library ] +
 xref:assertj-examples.adoc[Examples from the AssertJ library ] +
 xref:guava-examples.adoc[Examples of preconditions from the Guava library ] +
 xref:apache-commons-example.adoc[Example of guard closes from the Apache Commons library]
+
+
+== Direct Comparisons ==
+
+Direct comparisons of how each library is used to create the same suite of tests.
+
+xref:handshake-tests.adoc[Comparisons on how to test that associations and handshakes were successful]

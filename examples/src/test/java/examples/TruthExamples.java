@@ -1,3 +1,5 @@
+package examples;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.truth.Expect;
 import org.examples.BiDirectionalAssociation;

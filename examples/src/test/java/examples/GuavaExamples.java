@@ -1,3 +1,4 @@
+package examples;
 
 import junit.framework.AssertionFailedError;
 import org.junit.Test;

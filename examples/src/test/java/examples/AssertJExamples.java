@@ -1,3 +1,5 @@
+package examples;
+
 import org.assertj.core.api.*;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
