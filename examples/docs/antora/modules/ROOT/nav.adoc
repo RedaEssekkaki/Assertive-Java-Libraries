@@ -1,0 +1,11 @@
+
+* xref:index.adoc[Index]
+* Examples :
+** xref:truth-examples.adoc[Examples of assertions from the Truth library ] +
+** xref:assertj-examples.adoc[Examples from the AssertJ library ] +
+** xref:guava-examples.adoc[Examples of preconditions from the Guava library ] +
+** xref:apache-commons-example.adoc[Example of guard closes from the Apache Commons library]
+
+* Direct comparisons
+** xref:handshake-tests.adoc[Comparisons of tests on associations and handshakes] +
+** xref:basicTestComparison.adoc[Comparisons of tests on a simple class]

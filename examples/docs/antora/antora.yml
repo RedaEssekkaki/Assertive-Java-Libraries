@@ -1,9 +1,11 @@
 name: documentation
 title: Documentation
-version: 1
+version: latest
+start_page: index.adoc
 asciidoc:
   attributes:
     source-language: asciidoc@
     table-caption: false
-  nav:
-    - nav.adoc
+
+nav:
+ - modules/ROOT/nav.adoc

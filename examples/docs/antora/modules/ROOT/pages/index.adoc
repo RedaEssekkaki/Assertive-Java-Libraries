@@ -21,4 +21,10 @@ xref:apache-commons-example.adoc[Example of guard closes from the Apache Commons
 
 Direct comparisons of how each library is used to create the same suite of tests.
 
-xref:handshake-tests.adoc[Comparisons on how to test that associations and handshakes were successful]
+xref:handshake-tests.adoc[Comparisons of tests on associations and handshakes] +
+xref:basicTestComparison.adoc[Comparisons of tests on a simple class]
+
+=== Summary ===
+_Explained in more details in the above links_ +
+
+After these comparisons we came to the following conclusions

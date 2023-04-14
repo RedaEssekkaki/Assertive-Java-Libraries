@@ -2,4 +2,10 @@
 
 == In this section we provide a comparison of the different libraries on an instance of bidirectional associations.
 
-These libraries have some similarities in their syntax and mechanism of exception raising, like the Truth and Assertj library
+=== Presentation of the class ===
+The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this Class. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation`
+
+
+=== Comparisons of the tests ===
+
+== Conclusion ==

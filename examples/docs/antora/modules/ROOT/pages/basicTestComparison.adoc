@@ -1,6 +1,6 @@
 = Basic tests comparisons =
 
-== In this section we provide a comparison of the different libraries on an instance of basic tests made on a class
+== In this section we provide a comparison of the different libraries on an instance of basic tests made on a class ==
 
 === Presentation of the class ===
 We used the `Dwarf` class to make our tests :

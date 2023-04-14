@@ -18,4 +18,6 @@ ui:
 asciidoc:
   attributes:
     page-pagination: top bottom
+    icons: font
+
 
