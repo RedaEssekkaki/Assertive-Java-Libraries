@@ -5,7 +5,7 @@
 Truth is a library developed by Google's https://github.com/google/guava[guava] team that provides methods to perform assertions in tests.
 
 it uses the following pattern : `assertThat(actual value).is{Condition}(expected value)`
-The condition can be a wide variety of different tests, such as equality, numerical comparisons, if a element is contained in a collection, tests on strings, and many others.
+The condition can be a wide variety of different tests, such as equality, numerical comparisons, if an element is contained in a collection, tests on strings, and many others.
 
 .To try and familiarize ourselves with the library, we built a few tests on different kinds of objects :
 * Simple tests on integers
@@ -90,7 +90,7 @@ assertWithMessage("missing 'mod' at end of string").that(s2).endsWith("mod");
 
 === Tests on objects implementing the Iterable interface ===
 
-Truth has a number of methods to make assertions on Iterable types, for example testing if a iterable contains an element, multiple elements or exactly some elements and no other.
+Truth has a number of methods to make assertions on Iterable types, for example testing if an iterable contains an element, multiple elements or exactly some elements and no other.
 
 .Hide source code
 [%collapsible%open]
