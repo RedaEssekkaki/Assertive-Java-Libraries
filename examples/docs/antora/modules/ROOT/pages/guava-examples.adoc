@@ -1,13 +1,38 @@
 = Examples of Preconditions from the https://github.com/google/guava[Guava] library =
 
-Guava is a set of core Java libraries from Google that includes new collection types (such as multimap and multiset), immutable collections, a graph library, and utilities for concurrency, I/O, hashing, caching, primitives, strings, and more. It is widely used on most Java projects within Google, and widely used by many other companies as well
 
-.*These examples are to test the main utilities regarding preconditions provided by this library :*
+[sidebar]
+== Presentation
+====
+Guava is a set of core Java libraries from Google that includes new collection types (such as multimap and multiset), immutable collections, a graph library, and utilities for concurrency, I/O, hashing, caching, primitives, strings, and more. It is widely used on most Java projects within Google, and widely used by many other companies as well.
+====
 
-** Guava provides a number of *precondition checking utilities* in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class and there is 3 variants for each method.
+[sidebar]
+== Characteristics
+====
+Guava provides a number of *precondition checking utilities* in the https://github.com/google/guava/blob/master/guava/src/com/google/common/base/Preconditions.java[Preconditions] class and there is 3 variants for each method.
 This class contains static methods that can help to check whether it was invoked correctly (that is, whether its preconditions were met).
 If the precondition is not met, the Preconditions method throws an unchecked exception to a specified type, which helps the method in which the exception was thrown communicate that its caller has made a mistake.
+====
 
+[sidebar]
+== Variants
+====
+*As we said, each precondition method has 3 variants :*
+[square]
+* One with no extra arguments
+* An extra Object argument. Any exception is thrown with the error message object.toString().
+
+
+
+
+
+====
+
+
+NOTE: These examples are to test the main utilities regarding preconditions provided by this library :
+
+[sidebar]
 == Preconditions
 [source,asciidoc]
 |===
