@@ -1,5 +1,7 @@
 = Examples of assertions from the https://assertj.github.io/doc/[AssertJ] library =
 
+image::assertJlogo.png
+
 AssertJ is a library of assertions in Java, created by Joel Costigliola. Its goals are to make assertions more clear, more readable and to give helpful error messages.
 
 
@@ -28,6 +30,7 @@ assertThat(mot).as("raté")
 ====
 AssertJ has a lot of testing operations on String and collections (for example : startsWith, contains, endWith, ...) and on almost all other types.
 
+[#elevation]
 === Recursive Tests ===
 
 As we can use objects with multiple classes, we can use the AssertJ _recusive comparison_.
@@ -154,22 +157,24 @@ We can create some conditions and call it with `AssertThat(__object__).is(__myCo
 
 
 
+=== Assumption Assertions ===
 
+We also have some "Assumptions", it allows to "skip" somme assertions if the assumption's conditions are false.
 
-
-
-
-CAUTION: Bonjour +
-bold *constrained* & **un**constrained +
-italic _constrained_ & __un__constrained +
-bold italic *_constrained_* & **__un__**constrained
-
-monospace `constrained` & ``un``constrained +
-monospace bold italic `*_constrained_*` & ``**__un__**``constrained
-
-Type the word [.userinput]#asciidoc# into the search bar.
-
-
-
-The text pass:[<u>underline me</u>] is underlined.
-
+.Hide source code
+[%collapsible%open]
+====
+[source,language="java"]
+----
+    public void assumptionsTest() {
+        List<String> frodo = new ArrayList<String>();
+        frodo.add("Frodo");
+        frodo.add("33");
+        frodo.add("HOBBIT");
+        // since this assumption is true ...
+        assumeThat(frodo.get(2)).isEqualTo("HOBBIT");
+        // ... this assertion is performed
+        assertThat(frodo).doesNotContain("Sam");
+    }
+----
+====
