@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AssertJBasicTest {
@@ -53,20 +55,27 @@ public class AssertJBasicTest {
         dwarf.shave();
 
         //test dwarf has no beard
-
+        assertThat(dwarf.isBearded()).isFalse();
 
         dwarf.growBeard();
 
         //test dwarf has beard
+        assertThat(dwarf.isBearded()).isTrue();
     }
 
     @Test
     void testHungover()
     {
         dwarf.goesToTavern();
+
         //test that dwarf IS hungover
+        assertThat(dwarf.isHungover()).isTrue();
+
+
         dwarf.sleep();
+
         //test that dwarf is NOT hungover
+        assertThat(dwarf.isHungover()).isFalse();
     }
 
     @Test
@@ -74,7 +83,9 @@ public class AssertJBasicTest {
     {
         String learnedSong = "i am a dwarf and i'm digging a hole";
         dwarf.learnSong(learnedSong);
+
         //test that dwarf has learned song
+        assertThat(dwarf.getLearnedSongs().contains(learnedSong)).isTrue();
 
         //to intercept print ln
         PrintStream defaultoutput = System.out;
@@ -89,9 +100,9 @@ public class AssertJBasicTest {
         System.out.println(sang);
 
         //test that sang == value of the learned song
+        assertThat(learnedSong).isEqualTo(sang);
 
-        //test that dwarf.getLearnedSongs() does not contain the song he shouldve forgotten
-
-
+        //test that dwarf.getLearnedSongs() does not contain the song he should've forgotten
+        assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
     }
 }
