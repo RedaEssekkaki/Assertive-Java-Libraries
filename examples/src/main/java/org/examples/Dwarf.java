@@ -45,4 +45,12 @@ public class Dwarf {
     public void goesToTavern () {
         sing(this.drink());
     }
+
+    public boolean isKnown (String song) {
+        return this.knownSongs.contains(song);
+    }
+
+    public ArrayList<String> get () {
+        return this.knownSongs;
+    }
 }
