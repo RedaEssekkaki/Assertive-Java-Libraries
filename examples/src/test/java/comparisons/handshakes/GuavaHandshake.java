@@ -102,17 +102,20 @@ public class GuavaHandshake {
         BDA_0.set(BDA_1);
         BDA_2.set(BDA_3);
 
-        //test all is not get() null
+        //test all get() is not null
+        for (BiDirectionalAssociation asso : assoList) {
+            checkNotNull(asso.get(), "Fiels must be not null");
+        }
 
         BDA_3.unSet();
-
         //test BDA-3 & BDA_2 get() null
+        checkNotNull(BDA_2.get(), "Fiels must be null");
+        checkNotNull(BDA_3.get(), "Fiels must be null");
+
 
         BDA_0.unSet();
-
         //test bda_0 & bda_1 get() null
-
-
-
+        checkNotNull(BDA_0.get(), "Fiels must be null");
+        checkNotNull(BDA_1.get(), "Fiels must be null");
     }
 }
