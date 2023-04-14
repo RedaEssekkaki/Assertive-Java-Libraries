@@ -1,6 +1,8 @@
 = Examples of assertions from the https://assertj.github.io/doc/[AssertJ] library =
+:description: Description of the AssertJ library, here you can find examples to understand the Library
 
-image::assertJlogo.png
+image::assertJlogo.png[xref=assertj-examples.adoc]
+
 
 AssertJ is a library of assertions in Java, created by Joel Costigliola. Its goals are to make assertions more clear, more readable and to give helpful error messages.
 
@@ -9,6 +11,7 @@ We have a lot of possible assertions, often in this form : `AssertThat(object1).
 
 We made a few tests to help to understand and to master this library :
 
+[#fragment]
 == Using assert.as() ==
 We can use .as("__String__") to add a name to the assertion. It will write this anme if the test do not pass.
 
@@ -30,7 +33,6 @@ assertThat(mot).as("raté")
 ====
 AssertJ has a lot of testing operations on String and collections (for example : startsWith, contains, endWith, ...) and on almost all other types.
 
-[#elevation]
 === Recursive Tests ===
 
 As we can use objects with multiple classes, we can use the AssertJ _recusive comparison_.
@@ -178,3 +180,6 @@ We also have some "Assumptions", it allows to "skip" somme assertions if the ass
     }
 ----
 ====
+
+
+xref:index.adoc[Back to the home page]
