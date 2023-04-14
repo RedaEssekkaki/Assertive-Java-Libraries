@@ -9,7 +9,7 @@ public class Dwarf {
     private double weight;
     private boolean hasBeard;
     private boolean hasHangover;
-    private ArrayList<String> knownSongs = new ArrayList<>();
+    private SongRepository knownSongs = new SongRepository();
 
     public Dwarf (String name, double size, double weight, boolean hasBeard) {
         this.name        = name;
@@ -50,7 +50,7 @@ public class Dwarf {
         return this.knownSongs.contains(song);
     }
 
-    public ArrayList<String> get () {
+    public SongRepository get () {
         return this.knownSongs;
     }
 }
