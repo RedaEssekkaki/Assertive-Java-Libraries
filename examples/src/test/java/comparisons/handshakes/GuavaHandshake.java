@@ -9,6 +9,7 @@ import com.google.common.base.Objects;
 
 import java.util.ArrayList;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.fail;
 
@@ -22,6 +23,7 @@ public class GuavaHandshake {
     private BiDirectionalAssociation<Integer> BDA_3;
 
     private ArrayList<BiDirectionalAssociation<Integer>> assoList;
+    private boolean test;
 
     @BeforeEach
     public void setup()
@@ -66,12 +68,30 @@ public class GuavaHandshake {
         }
 
         //test bda_2 & bda_1 linked
-        Objects.equal(BDA_2.get(), BDA_1.get());
 
+        test = Objects.equal(BDA_2.get(), BDA_1.get());
+
+        for (BiDirectionalAssociation asso : assoList) {
+            try{
+                checkArgument(test, "BD2 et BD1 doivent etre liés");
+                fail("A NullPointerException was expected");
+            }
+            catch (NullPointerException expected){
+            }
+        }
 
         BDA_3.set(BDA_0);
         //test bda_3 & bda_0 linked
-        Objects.equal(BDA_3.get(), BDA_0.get());
+        test = Objects.equal(BDA_3.get(), BDA_0.get());
+
+        for (BiDirectionalAssociation asso : assoList) {
+            try{
+                checkArgument(test, "BD3 et BD0 doivent etre liés");
+                fail("A NullPointerException was expected");
+            }
+            catch (NullPointerException expected){
+            }
+        }
 
 
     }
