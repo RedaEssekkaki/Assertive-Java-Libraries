@@ -1,12 +1,15 @@
 package comparisons.handshakes;
 
+
+import org.assertj.core.*;
+
 import org.examples.BiDirectionalAssociation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class AssertJHandshake {
-
-
     private BiDirectionalAssociation<Integer> BDA_0;
     private BiDirectionalAssociation<Integer> BDA_1;
     private BiDirectionalAssociation<Integer> BDA_2;
@@ -26,6 +29,11 @@ public class AssertJHandshake {
     public void testSet()
     {
         //test all get() is null
+        assertThat(BDA_0.get()).isNull();
+        assertThat(BDA_1.get()).isNull();
+        assertThat(BDA_2.get()).isNull();
+        assertThat(BDA_3.get()).isNull();
+
 
         BDA_0.set(BDA_1);
 
