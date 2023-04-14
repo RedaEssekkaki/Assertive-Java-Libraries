@@ -84,7 +84,7 @@ public class AssertJBasicTest {
         dwarf.goesToTavern();
 
         //Interception of the System.out.println()
-        String sang = intercept.toString();
+        String sang = intercept.toString().replace("\n","");
         System.setOut(defaultoutput);
         System.out.println(sang);
 
