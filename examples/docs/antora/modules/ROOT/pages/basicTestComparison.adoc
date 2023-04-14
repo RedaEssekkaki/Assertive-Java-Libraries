@@ -155,6 +155,8 @@ public class SongRepository {
 This test is to ensure that the constructor properly sets the object's fields
 
 ===== Apache :
+
+
 [source, language="java"]
 ----
 Validate.isTrue(Objects.equals(dwarf.getName(), "Jeremy"));
@@ -181,6 +183,50 @@ Guards.checkEqualTo(dwarf.isBearded(),false);
 ===== Guava :
 [source, language="java"]
 ----
+test = Objects.equal(dwarf.getName(), "Jeremy");
+checkArgument(test, "Wrong name");
+
+test = Objects.equal(dwarf.getSize(), 80.4);
+checkArgument(test, "Wrong size");
+
+test = Objects.equal(dwarf.getWeight(), 90.3);
+checkArgument(test, "Wrong weight");
+
+checkArgument(!dwarf.isBearded(), "We should not have beard");
+fail("Expected false but is true");
+----
+===== Truth :
+[source, language="java"]
+----
+assertThat(dwarf.getName()).isEqualTo("Jeremy");
+assertThat(dwarf.getSize()).isEqualTo(80.4);
+assertThat(dwarf.getWeight()).isEqualTo(90.3);
+assertThat(dwarf.isBearded()).isFalse();
+----
+
+==== testSize ====
+This test ensures that `getSize()` and `setSize()` works as intended
+
+===== Apache :
+
+[source, language="java"]
+----
+
+----
+===== AssertJ :
+[source, language="java"]
+----
+
+----
+
+===== Atlanmod :
+[source, language="java"]
+----
+
+----
+===== Guava :
+[source, language="java"]
+----
 
 ----
 ===== Truth :
@@ -189,58 +235,99 @@ Guards.checkEqualTo(dwarf.isBearded(),false);
 
 ----
 
-==== testSize ====
-This test ensures that `getSize()` and `setSize()` works as intended
-
-===== Apache :
-
-===== AssertJ :
-
-===== Atlanmod :
-
-===== Guava :
-
-===== Truth :
-
 
 ==== testWeight ====
 This test ensures that `getWeight()` and `setWeight()` works as intended
 
 ===== Apache :
 
+[source, language="java"]
+----
+
+----
 ===== AssertJ :
+[source, language="java"]
+----
+
+----
 
 ===== Atlanmod :
+[source, language="java"]
+----
 
+----
 ===== Guava :
+[source, language="java"]
+----
 
+----
 ===== Truth :
+[source, language="java"]
+----
+
+----
 
 ==== testBeard ====
 This test ensures that `shave()`,`growBeard()` and `isBearded()` works as intended
 
 ===== Apache :
 
+[source, language="java"]
+----
+
+----
 ===== AssertJ :
+[source, language="java"]
+----
+
+----
 
 ===== Atlanmod :
+[source, language="java"]
+----
 
+----
 ===== Guava :
+[source, language="java"]
+----
 
+----
 ===== Truth :
+[source, language="java"]
+----
+
+----
 
 ==== testHungover ====
 This test ensures that the hungover field is properly set by the dwarf going to the tavern and sleeping
 
 ===== Apache :
 
+[source, language="java"]
+----
+
+----
 ===== AssertJ :
+[source, language="java"]
+----
+
+----
 
 ===== Atlanmod :
+[source, language="java"]
+----
 
+----
 ===== Guava :
+[source, language="java"]
+----
 
+----
 ===== Truth :
+[source, language="java"]
+----
+
+----
 
 ==== testSongs ====
 This test ensures that the learned songs get updated when a dwarf learns a song & goes to the tavern (which causes him to forget a song and sing it).
@@ -248,12 +335,30 @@ This also ensures that the song is properly printed when sang.
 
 ===== Apache :
 
+[source, language="java"]
+----
+
+----
 ===== AssertJ :
+[source, language="java"]
+----
+
+----
 
 ===== Atlanmod :
+[source, language="java"]
+----
 
+----
 ===== Guava :
+[source, language="java"]
+----
 
+----
 ===== Truth :
+[source, language="java"]
+----
+
+----
 
 == Conclusion ==
