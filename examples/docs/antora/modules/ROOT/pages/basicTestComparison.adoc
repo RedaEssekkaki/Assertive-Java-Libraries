@@ -154,20 +154,106 @@ public class SongRepository {
 ==== testConstructor ====
 This test is to ensure that the constructor properly sets the object's fields
 
+===== Apache :
+[source, language="java"]
+----
+Validate.isTrue(Objects.equals(dwarf.getName(), "Jeremy"));
+Validate.isTrue( dwarf.getSize() == 80.4);
+Validate.isTrue( dwarf.getWeight() == 90.3);
+Validate.isTrue(!dwarf.isBearded());
+----
+===== AssertJ :
+[source, language="java"]
+----
+assertThat(dwarf)
+                .extracting(Dwarf::getName, Dwarf::getSize, Dwarf::getWeight, Dwarf::isBearded)
+                .containsExactly("Jeremy", 80.4, 90.3, false);
+----
+
+===== Atlanmod :
+[source, language="java"]
+----
+Guards.checkEqualTo(dwarf.getName(),"Jeremy");
+Guards.checkEqualTo(dwarf.getSize(),80.4);
+Guards.checkEqualTo(dwarf.getWeight(),90.3);
+Guards.checkEqualTo(dwarf.isBearded(),false);
+----
+===== Guava :
+[source, language="java"]
+----
+
+----
+===== Truth :
+[source, language="java"]
+----
+
+----
+
 ==== testSize ====
 This test ensures that `getSize()` and `setSize()` works as intended
+
+===== Apache :
+
+===== AssertJ :
+
+===== Atlanmod :
+
+===== Guava :
+
+===== Truth :
+
 
 ==== testWeight ====
 This test ensures that `getWeight()` and `setWeight()` works as intended
 
+===== Apache :
+
+===== AssertJ :
+
+===== Atlanmod :
+
+===== Guava :
+
+===== Truth :
+
 ==== testBeard ====
 This test ensures that `shave()`,`growBeard()` and `isBearded()` works as intended
+
+===== Apache :
+
+===== AssertJ :
+
+===== Atlanmod :
+
+===== Guava :
+
+===== Truth :
 
 ==== testHungover ====
 This test ensures that the hungover field is properly set by the dwarf going to the tavern and sleeping
 
+===== Apache :
+
+===== AssertJ :
+
+===== Atlanmod :
+
+===== Guava :
+
+===== Truth :
+
 ==== testSongs ====
 This test ensures that the learned songs get updated when a dwarf learns a song & goes to the tavern (which causes him to forget a song and sing it).
 This also ensures that the song is properly printed when sang.
+
+===== Apache :
+
+===== AssertJ :
+
+===== Atlanmod :
+
+===== Guava :
+
+===== Truth :
 
 == Conclusion ==

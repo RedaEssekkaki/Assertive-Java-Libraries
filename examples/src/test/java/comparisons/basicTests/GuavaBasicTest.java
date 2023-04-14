@@ -37,12 +37,9 @@ public class GuavaBasicTest {
         test = Objects.equal(dwarf.getWeight(), 90.3);
         checkArgument(test, "Wrong weight");
 
-        try{
-            checkArgument(dwarf.isBearded(), "We should not have beard");
-            fail("Expected true but is false");
-        }
-        catch (IllegalArgumentException expected){
-        }
+        checkArgument(!dwarf.isBearded(), "We should not have beard");
+        fail("Expected false but is true");
+
     }
 
     @Test
