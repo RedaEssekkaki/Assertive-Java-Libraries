@@ -2,10 +2,9 @@
 import org.apache.commons.lang3.Validate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.Assert.fail;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import static org.junit.Assert.fail;
 
 /**
  * The purpose of this class is to tinker with apache.commons.lang3.Validate 's
