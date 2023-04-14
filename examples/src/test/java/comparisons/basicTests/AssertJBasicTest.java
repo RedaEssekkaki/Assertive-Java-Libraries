@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AssertJBasicTest {
 
@@ -21,6 +22,10 @@ public class AssertJBasicTest {
     void testConstructor()
     {
         //test that all attributes set by constructor in setup() are correct
+        assertThat(dwarf)
+                .extracting(Dwarf::getName, Dwarf::getSize, Dwarf::getWeight, Dwarf::isBearded)
+                .containsExactly("Jeremy", 80.4, 90.3, false);
+
     }
 
     @Test
@@ -29,14 +34,17 @@ public class AssertJBasicTest {
         dwarf.setSize(40.0);
 
         //test size is properly set
+        assertThat(dwarf.getSize()).isEqualTo(40.0);
     }
 
     @Test
     void testWeight()
     {
+
         dwarf.setWeight(24.7);
 
         //test weight is properly set
+        assertThat(dwarf.getWeight()).isEqualTo(24.7);
     }
 
     @Test
@@ -45,6 +53,7 @@ public class AssertJBasicTest {
         dwarf.shave();
 
         //test dwarf has no beard
+
 
         dwarf.growBeard();
 
