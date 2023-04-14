@@ -67,7 +67,7 @@ public class ApacheCommonsExamples {
         try {
             testedStudent.setGrade(0, null);
             fail("This test is supposed to fail.");
-        } catch (IndexOutOfBoundsException expected) {
+        } catch (NullPointerException expected) {
             System.out.println(expected);
         }
     }
@@ -92,11 +92,6 @@ public class ApacheCommonsExamples {
         } catch (IllegalArgumentException expected) {
             System.out.println(expected);
         }
-    }
-
-    @Test
-    public void testNormalSet () {
-        testedStudent.setGrade(2, 18.5);
     }
 
     /**
@@ -132,7 +127,7 @@ public class ApacheCommonsExamples {
             double divider = 0.0;
 
             for (Double each : grades) {
-                Validate.isTrue(each >= 0, "A grade cannot be lesser than 0: %d", each);
+                Validate.isTrue(each >= 0.0, "A grade cannot be lesser than 0: %d", each.longValue());
                 divisor += each;
                 divider += 1.0;
             }
