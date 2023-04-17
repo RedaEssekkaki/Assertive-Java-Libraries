@@ -375,6 +375,28 @@ assertThat(dwarf.isHungover()).isFalse();
 This test ensures that the learned songs get updated when a dwarf learns a song & goes to the tavern (which causes him to forget a song and sing it).
 This also ensures that the song is properly printed when sang.
 
+[NOTE]
+====
+In this section, to verify that the dwarf properly "sings" a song (prints it to the standard output) we temporarily replace System.out with a `ByteArrayOutputStream` which we then test to have been given the song. The code for doing so will be replaced by intercept1() and intercept2(), and the source code for doing so is as follows :
+
+[source, language="java"]
+----
+void intercept1()
+{
+    PrintStream defaultoutput = System.out;
+    ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(intercept));
+}
+void intercept2()
+{
+    String sang = intercept.toString().replace("\n","");
+    System.setOut(defaultoutput);
+    System.out.println(sang);
+}
+
+----
+These are not actual functions in the code, this is just a way to reduce repeated and irrelevant code in the comparison.
+====
 ===== Apache :
 
 [source, language="java"]
@@ -382,15 +404,9 @@ This also ensures that the song is properly printed when sang.
 String learnedSong = "i am a dwarf and i'm digging a hole";
 dwarf.learnSong(learnedSong);
 Validate.isTrue(dwarf.getLearnedSongs().contains(learnedSong));
-PrintStream defaultoutput = System.out;
-ByteArrayOutputStream intercept = new ByteArrayOutputStream();
-System.setOut(new PrintStream(intercept));
-
+intercept1()
 dwarf.goesToTavern();
-
-String sang = intercept.toString().replace("\n","");
-System.setOut(defaultoutput);
-System.out.println(sang);
+intercept2()
 Validate.isTrue(sang.equals(learnedSong));
 Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 ----
@@ -400,15 +416,9 @@ Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 String learnedSong = "i am a dwarf and i'm digging a hole";
 dwarf.learnSong(learnedSong);
 assertThat(dwarf.getLearnedSongs().contains(learnedSong)).isTrue();
-PrintStream defaultoutput = System.out;
-ByteArrayOutputStream intercept = new ByteArrayOutputStream();
-System.setOut(new PrintStream(intercept));
-
+intercept1()
 dwarf.goesToTavern();
-
-String sang = intercept.toString().replace("\n","");
-System.setOut(defaultoutput);
-System.out.println(sang);
+intercept2()
 assertThat(learnedSong).isEqualTo(sang);
 assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
 ----
@@ -419,16 +429,10 @@ assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
 String learnedSong = "i am a dwarf and i'm digging a hole";
 dwarf.learnSong(learnedSong);
 Guards.checkArgument(dwarf.getLearnedSongs().contains(learnedSong));
-PrintStream defaultoutput = System.out;
-ByteArrayOutputStream intercept = new ByteArrayOutputStream();
-System.setOut(new PrintStream(intercept));
-
+intercept1()
 dwarf.goesToTavern();
+intercept2()Guards.checkEqualTo(sang,learnedSong);
 
-String sang = intercept.toString().replace("\n","");
-System.setOut(defaultoutput);
-System.out.println(sang);
-Guards.checkEqualTo(sang,learnedSong);
 Guards.checkEqualTo(dwarf.getLearnedSongs().contains(sang), false);
 ----
 ===== Guava :
@@ -436,17 +440,9 @@ Guards.checkEqualTo(dwarf.getLearnedSongs().contains(sang), false);
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
 dwarf.learnSong(learnedSong);
-checkArgument(dwarf.getLearnedSongs().contains(learnedSong));
-PrintStream defaultoutput = System.out;
-ByteArrayOutputStream intercept = new ByteArrayOutputStream();
-System.setOut(new PrintStream(intercept));
-
+checkArgument(dwarf.getLearnedSongs().contains(learnedSong));intercept1()
 dwarf.goesToTavern();
-
-String sang = intercept.toString().replace("\n","");
-System.setOut(defaultoutput);
-System.out.println(sang);
-test = Objects.equal(sang, learnedSong);
+intercept2()test = Objects.equal(sang, learnedSong);
 checkArgument(test, "Wrong song");
 checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
 ----
@@ -455,17 +451,9 @@ checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not con
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
 dwarf.learnSong(learnedSong);
-assertThat(dwarf.isKnown("i am a dwarf and i'm digging a hole")).isTrue();
-PrintStream defaultoutput = System.out;
-ByteArrayOutputStream intercept = new ByteArrayOutputStream();
-System.setOut(new PrintStream(intercept));
-
+assertThat(dwarf.isKnown("i am a dwarf and i'm digging a hole")).isTrue();intercept1()
 dwarf.goesToTavern();
-
-String sang = intercept.toString().replace("\n","");
-System.setOut(defaultoutput);
-System.out.println(sang);
-assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
+intercept2()assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
 assertThat(dwarf.getLearnedSongs().contains("i am a dwarf and i'm digging a hole")).isFalse();
 ----
 
