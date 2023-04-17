@@ -211,7 +211,8 @@ This test ensures that `getSize()` and `setSize()` works as intended
 
 [source, language="java"]
 ----
-
+dwarf.setSize(40.0);
+Validate.isTrue( dwarf.getSize() == 40.0);
 ----
 ===== AssertJ :
 [source, language="java"]
@@ -243,7 +244,8 @@ This test ensures that `getWeight()` and `setWeight()` works as intended
 
 [source, language="java"]
 ----
-
+dwarf.setWeight(24.7);
+Validate.isTrue( dwarf.getWeight() == 24.7);
 ----
 ===== AssertJ :
 [source, language="java"]
@@ -274,7 +276,10 @@ This test ensures that `shave()`,`growBeard()` and `isBearded()` works as intend
 
 [source, language="java"]
 ----
-
+dwarf.shave();
+Validate.isTrue(!dwarf.isBearded());
+dwarf.growBeard();
+Validate.isTrue(dwarf.isBearded());
 ----
 ===== AssertJ :
 [source, language="java"]
@@ -337,7 +342,20 @@ This also ensures that the song is properly printed when sang.
 
 [source, language="java"]
 ----
+String learnedSong = "i am a dwarf and i'm digging a hole";
+dwarf.learnSong(learnedSong);
+Validate.isTrue(dwarf.getLearnedSongs().contains(learnedSong));
+PrintStream defaultoutput = System.out;
+ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+System.setOut(new PrintStream(intercept));
 
+dwarf.goesToTavern();
+
+String sang = intercept.toString().replace("\n","");
+System.setOut(defaultoutput);
+System.out.println(sang);
+Validate.isTrue(sang.equals(learnedSong));
+Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 ----
 ===== AssertJ :
 [source, language="java"]
