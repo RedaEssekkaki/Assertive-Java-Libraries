@@ -27,7 +27,6 @@ public class AssertJBasicTest {
         assertThat(dwarf)
                 .extracting(Dwarf::getName, Dwarf::getSize, Dwarf::getWeight, Dwarf::isBearded)
                 .containsExactly("Jeremy", 80.4, 90.3, false);
-
     }
 
     @Test

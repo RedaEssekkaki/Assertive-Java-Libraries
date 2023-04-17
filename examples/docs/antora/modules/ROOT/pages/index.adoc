@@ -32,14 +32,14 @@ From these comparisons we created these ratings :
 | |Apache |AssertJ |Atlanmod |Guava |Truth
 
 |Easy to read
-| ⭐
+| ⭐⭐
 | ⭐⭐⭐⭐
 | ⭐⭐⭐
 | ⭐⭐
 | ⭐⭐⭐⭐⭐
 
 |Easy to write
-| ⭐
+| ⭐⭐
 | ⭐⭐⭐⭐
 | ⭐⭐⭐
 | ⭐⭐
@@ -60,12 +60,77 @@ From these comparisons we created these ratings :
 | ⭐
 | ⭐⭐⭐⭐⭐
 
-
-
-
 |===
+
+=== Easy to read :
+
+The goal is to compare wether an assertion is easy to understand, i.e. if by just glancing over it we can understand what the developer was trying to assert.
+Here are examples for the same test case :
+
+[source, language="java"]
+----
+//Apache Commons :
+Validate.isTrue(Objects.equals(dwarf.getName(), "Jeremy"));
+//AssertJ
+assertThat(dwarf.getName()).isEqualTo("Jeremy");
+//Atlanmod Commons Guards
+Guards.checkEqualTo(dwarf.getName(),"Jeremy");
+//Guava
+checkArgument(Objects.equal(dwarf.getName(), "Jeremy"));
+//Truth
+assertThat(dwarf.getName()).isEqualTo("Jeremy");
+----
+Here we can see that for all libraries except for AssertJ and Truth, the exact meaning of each test is not immediately understood from simply reading left to right. Apache Commons and Guava require to understand the condition, and Atlanmod Commons Guards are not as natural as the almost natural language sentence that assertJ and Truth use.
+
+Truth is ultimately the winner here are there are a few assertJ methods that are harder to understand or more complex, such as :
+[source, language="java"]
+----
+assertThat(dwarf)
+                .extracting(Dwarf::getName, Dwarf::getSize, Dwarf::getWeight, Dwarf::isBearded)
+                .containsExactly("Jeremy", 80.4, 90.3, false);
+//or
+assertThat(uniqueIdGenerator.next()).isNotSameAs(uniqueIdGenerator.next());
+// wich will pass if both values are numerically equal but not the same object
+----
+
+
+=== Easy to write
+For this one, AssertJ and Truth are clear winners, as they are very easy to write using auto completiion, and it will almost never happen that a developer has to write their own boolean expression to assert something.
+Atlanmod Commons is also quite easy to write as it provides a lot of methods to  assert things without having to write any boolean expression. However, Guava and Apache commons fall flat as they do not offer such shortcuts, and most tests must be built using boolean expressions.
+
+=== Case Coverage
+This is the number of things you can check for without having to write custom preconditions. As previously expressed, Guava and Apache Commons offer almost none of those shortcuts. AtlanMod Commons, while better, is also quite lacking in complex prebuilt preconditions. Truth and AssertJ are the clear winners in this category as they offer many prebuilt methods. It is to be said that AssertJ does have a more extensive API, which makes it the winner here.
+
+=== Error message legibility
+
+Here are example errors messages for the same test results :
+
+.Hide output
+[%collapsible%open]
+====
+[source, language="java"]
+----
+//Apache Commons :
+ava.lang.IllegalArgumentException: The validated expression is false
+//AssertJ :
+org.opentest4j.AssertionFailedError:
+expected: 40.1
+ but was: 40.0
+//Atlanmod Commons
+java.lang.IllegalArgumentException: value (40.0) must be equal to 40.1
+//Guava :
+java.lang.IllegalArgumentException: Wrong
+//Truth :
+value of: getSize()
+expected: 40.1
+but was : 40.0
+----
+====
+
+Here it is clear to see that Guava and Apache commons offer no insight. Atlanmod Commons does offer some insight has we know what the value is and what it was expected to be but not much more. AssertJ is also very similar in that way. Truth is a clear winner as, out of the box, not only does it shows the expected and actual values, but also a value of what they are. This is the case throughout the whole library.
 
 
 == Conclusions : ==
 
+In conclusion, we chose to create our own assertions library based on the syntax and design of Truth, as it is both easy to read & write, gives a large amount of information if a test fails, and has great coverage.
 
