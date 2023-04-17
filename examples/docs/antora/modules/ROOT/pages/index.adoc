@@ -24,7 +24,48 @@ Direct comparisons of how each library is used to create the same suite of tests
 xref:handshake-tests.adoc[Comparisons of tests on associations and handshakes] +
 xref:basicTestComparison.adoc[Comparisons of tests on a simple class]
 
-=== Summary ===
-_Explained in more details in the above links_ +
+From these comparisons we created these ratings :
 
-After these comparisons we came to the following conclusions
+
+
+|===
+| |Apache |AssertJ |Atlanmod |Guava |Truth
+
+|Easy to read
+| ⭐
+| ⭐⭐⭐⭐
+| ⭐⭐⭐
+| ⭐⭐
+| ⭐⭐⭐⭐⭐
+
+|Easy to write
+| ⭐
+| ⭐⭐⭐⭐
+| ⭐⭐⭐
+| ⭐⭐
+| ⭐⭐⭐⭐⭐
+
+
+|Case Coverage
+| ⭐
+| ⭐⭐⭐⭐⭐
+| ⭐⭐
+| ⭐
+| ⭐⭐⭐⭐
+
+|Error message legibility
+| ⭐
+| ⭐⭐⭐
+| ⭐
+| ⭐
+| ⭐⭐⭐⭐⭐
+
+
+
+
+|===
+
+
+== Conclusions : ==
+
+
