@@ -1,6 +1,6 @@
 = Example assertions =
 
-This repository holds a java projects which aims to provide examples
+https://gitlab.univ-nantes.fr/E203173Q/example-assertions[This repository] holds a java projects which aims to provide examples
 of how multiple libraries allow to create assertions. These libraries include https://github.com/google/guava[Guava] ,
 https://github.com/apache/commons-lang[Apache Commons],
 https://github.com/google/truth[Truth] & http://joel-costigliola.github.io/assertj/[AssertJ] as well as
@@ -64,7 +64,7 @@ From these comparisons we created these ratings :
 
 === Easy to read :
 
-The goal is to compare wether an assertion is easy to understand, i.e. if by just glancing over it we can understand what the developer was trying to assert.
+The goal is to compare whether an assertion is easy to understand, i.e. if by just glancing over it we can understand what the developer was trying to assert.
 Here are examples for the same test case :
 
 [source, language="java"]
@@ -95,7 +95,7 @@ assertThat(uniqueIdGenerator.next()).isNotSameAs(uniqueIdGenerator.next());
 
 
 === Easy to write
-For this one, AssertJ and Truth are clear winners, as they are very easy to write using auto completiion, and it will almost never happen that a developer has to write their own boolean expression to assert something.
+For this one, AssertJ and Truth are clear winners, as they are very easy to write using auto-completion, and it will almost never happen that a developer has to write their own boolean expression to assert something.
 Atlanmod Commons is also quite easy to write as it provides a lot of methods to  assert things without having to write any boolean expression. However, Guava and Apache commons fall flat as they do not offer such shortcuts, and most tests must be built using boolean expressions.
 
 === Case Coverage
@@ -127,7 +127,7 @@ but was : 40.0
 ----
 ====
 
-Here it is clear to see that Guava and Apache commons offer no insight. Atlanmod Commons does offer some insight has we know what the value is and what it was expected to be but not much more. AssertJ is also very similar in that way. Truth is a clear winner as, out of the box, not only does it shows the expected and actual values, but also a value of what they are. This is the case throughout the whole library.
+Here it is clear to see that Guava and Apache commons offer no insight. Atlanmod Commons does offer some insight has we know what the value is and what it was expected to be but not much more. AssertJ is also very similar in that way. Truth is a clear winner as, out of the box, not only does it show the expected and actual values, but also what the values represent. This is the case throughout the whole library.
 
 
 == Conclusions : ==
