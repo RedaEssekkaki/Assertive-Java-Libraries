@@ -466,7 +466,7 @@ String sang = intercept.toString().replace("\n","");
 System.setOut(defaultoutput);
 System.out.println(sang);
 assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
-assertThat(dwarf.getLearnedSongs().contains("i am a dwarf nd i'm digging a hole")).isFalse();
+assertThat(dwarf.getLearnedSongs().contains("i am a dwarf and i'm digging a hole")).isFalse();
 ----
 
 == Conclusion ==

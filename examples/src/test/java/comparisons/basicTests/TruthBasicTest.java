@@ -96,7 +96,7 @@ public class TruthBasicTest {
         assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
 
         //test that dwarf.getLearnedSongs() does not contain the song he shouldve forgotten
-        assertThat(dwarf.getLearnedSongs().contains("i am a dwarf nd i'm digging a hole")).isFalse();
+        assertThat(dwarf.getLearnedSongs().contains("i am a dwarf and i'm digging a hole")).isFalse();
 
     }
 }
