@@ -224,7 +224,8 @@ assertThat(dwarf.getSize()).isEqualTo(40.0);
 ===== Atlanmod :
 [source, language="java"]
 ----
-
+dwarf.setSize(40.0);
+Guards.checkEqualTo(dwarf.getSize(),40.0);
 ----
 ===== Guava :
 [source, language="java"]
@@ -258,7 +259,8 @@ assertThat(dwarf.getWeight()).isEqualTo(24.7);
 ===== Atlanmod :
 [source, language="java"]
 ----
-
+dwarf.setWeight(24.7);
+Guards.checkEqualTo(dwarf.getWeight(),24.7);
 ----
 ===== Guava :
 [source, language="java"]
@@ -295,7 +297,10 @@ assertThat(dwarf.isBearded()).isTrue();
 ===== Atlanmod :
 [source, language="java"]
 ----
-
+dwarf.shave();
+Guards.checkEqualTo(dwarf.isBearded(),false);
+dwarf.growBeard();
+Guards.checkArgument(dwarf.isBearded());
 ----
 ===== Guava :
 [source, language="java"]
@@ -329,7 +334,10 @@ assertThat(dwarf.isHungover()).isFalse();
 ===== Atlanmod :
 [source, language="java"]
 ----
-
+dwarf.goesToTavern();
+Guards.checkArgument(dwarf.isHungover());
+dwarf.sleep();
+Guards.checkEqualTo(dwarf.isHungover(),false);
 ----
 ===== Guava :
 [source, language="java"]
@@ -387,7 +395,20 @@ assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
 ===== Atlanmod :
 [source, language="java"]
 ----
+String learnedSong = "i am a dwarf and i'm digging a hole";
+dwarf.learnSong(learnedSong);
+Guards.checkArgument(dwarf.getLearnedSongs().contains(learnedSong));
+PrintStream defaultoutput = System.out;
+ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+System.setOut(new PrintStream(intercept));
 
+dwarf.goesToTavern();
+
+String sang = intercept.toString().replace("\n","");
+System.setOut(defaultoutput);
+System.out.println(sang);
+Guards.checkEqualTo(sang,learnedSong);
+Guards.checkEqualTo(dwarf.getLearnedSongs().contains(sang), false);
 ----
 ===== Guava :
 [source, language="java"]
