@@ -230,7 +230,9 @@ Guards.checkEqualTo(dwarf.getSize(),40.0);
 ===== Guava :
 [source, language="java"]
 ----
-
+dwarf.setSize(40.0);
+test = Objects.equal(dwarf.getSize(), 40.0);
+checkArgument(test, "Wrong size");
 ----
 ===== Truth :
 [source, language="java"]
@@ -265,7 +267,9 @@ Guards.checkEqualTo(dwarf.getWeight(),24.7);
 ===== Guava :
 [source, language="java"]
 ----
-
+dwarf.setWeight(24.7);
+test = Objects.equal(dwarf.getWeight(), 24.7);
+checkArgument(test, "Wrong weight");
 ----
 ===== Truth :
 [source, language="java"]
@@ -305,7 +309,10 @@ Guards.checkArgument(dwarf.isBearded());
 ===== Guava :
 [source, language="java"]
 ----
-
+dwarf.shave();
+checkArgument(!dwarf.isBearded(), "We should not have beard");
+dwarf.growBeard();
+checkArgument(dwarf.isBearded(), "We should not have beard");
 ----
 ===== Truth :
 [source, language="java"]
@@ -342,7 +349,10 @@ Guards.checkEqualTo(dwarf.isHungover(),false);
 ===== Guava :
 [source, language="java"]
 ----
-
+dwarf.goesToTavern();
+checkArgument(dwarf.isHungover(), "Dwarf should be hungover");
+dwarf.sleep();
+checkArgument(!dwarf.isHungover(), "Dwarf should not be hungover");
 ----
 ===== Truth :
 [source, language="java"]
@@ -413,7 +423,21 @@ Guards.checkEqualTo(dwarf.getLearnedSongs().contains(sang), false);
 ===== Guava :
 [source, language="java"]
 ----
+String learnedSong = "i am a dwarf and i'm digging a hole";
+dwarf.learnSong(learnedSong);
+checkArgument(dwarf.getLearnedSongs().contains(learnedSong));
+PrintStream defaultoutput = System.out;
+ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+System.setOut(new PrintStream(intercept));
 
+dwarf.goesToTavern();
+
+String sang = intercept.toString().replace("\n","");
+System.setOut(defaultoutput);
+System.out.println(sang);
+test = Objects.equal(sang, learnedSong);
+checkArgument(test, "Wrong song");
+checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
 ----
 ===== Truth :
 [source, language="java"]
