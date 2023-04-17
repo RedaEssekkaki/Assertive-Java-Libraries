@@ -237,7 +237,8 @@ checkArgument(test, "Wrong size");
 ===== Truth :
 [source, language="java"]
 ----
-
+dwarf.setSize(40.0);
+assertThat(dwarf.getSize()).isEqualTo(40.0);
 ----
 
 
@@ -274,7 +275,8 @@ checkArgument(test, "Wrong weight");
 ===== Truth :
 [source, language="java"]
 ----
-
+dwarf.setWeight(24.7);
+assertThat(dwarf.getWeight()).isEqualTo(24.7);
 ----
 
 ==== testBeard ====
@@ -317,7 +319,10 @@ checkArgument(dwarf.isBearded(), "We should not have beard");
 ===== Truth :
 [source, language="java"]
 ----
-
+dwarf.shave();
+assertThat(dwarf.isBearded()).isFalse();
+dwarf.growBeard();
+assertThat(dwarf.isBearded()).isTrue();
 ----
 
 ==== testHungover ====
@@ -357,7 +362,10 @@ checkArgument(!dwarf.isHungover(), "Dwarf should not be hungover");
 ===== Truth :
 [source, language="java"]
 ----
-
+dwarf.goesToTavern();
+assertThat(dwarf.isHungover()).isTrue();
+dwarf.sleep();
+assertThat(dwarf.isHungover()).isFalse();
 ----
 
 ==== testSongs ====
@@ -442,7 +450,20 @@ checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not con
 ===== Truth :
 [source, language="java"]
 ----
+String learnedSong = "i am a dwarf and i'm digging a hole";
+dwarf.learnSong(learnedSong);
+assertThat(dwarf.isKnown("i am a dwarf and i'm digging a hole")).isTrue();
+PrintStream defaultoutput = System.out;
+ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+System.setOut(new PrintStream(intercept));
 
+dwarf.goesToTavern();
+
+String sang = intercept.toString().replace("\n","");
+System.setOut(defaultoutput);
+System.out.println(sang);
+assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
+assertThat(dwarf.getLearnedSongs().contains("i am a dwarf nd i'm digging a hole")).isFalse();
 ----
 
 == Conclusion ==
