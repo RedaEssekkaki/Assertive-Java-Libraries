@@ -1,12 +1,9 @@
 package comparisons.handshakes;
 
-import org.apache.commons.lang3.Validate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.examples.BiDirectionalAssociation;
 import org.atlanmod.commons.Guards;
-
-import java.security.Guard;
 
 public class AtlanmodHandshake {
     private BiDirectionalAssociation<Integer> BDA_0;
