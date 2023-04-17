@@ -217,7 +217,8 @@ Validate.isTrue( dwarf.getSize() == 40.0);
 ===== AssertJ :
 [source, language="java"]
 ----
-
+dwarf.setSize(40.0);
+assertThat(dwarf.getSize()).isEqualTo(40.0);
 ----
 
 ===== Atlanmod :
@@ -250,7 +251,8 @@ Validate.isTrue( dwarf.getWeight() == 24.7);
 ===== AssertJ :
 [source, language="java"]
 ----
-
+dwarf.setWeight(24.7);
+assertThat(dwarf.getWeight()).isEqualTo(24.7);
 ----
 
 ===== Atlanmod :
@@ -284,7 +286,10 @@ Validate.isTrue(dwarf.isBearded());
 ===== AssertJ :
 [source, language="java"]
 ----
-
+dwarf.shave();
+assertThat(dwarf.isBearded()).isFalse();
+dwarf.growBeard();
+assertThat(dwarf.isBearded()).isTrue();
 ----
 
 ===== Atlanmod :
@@ -315,7 +320,10 @@ This test ensures that the hungover field is properly set by the dwarf going to 
 ===== AssertJ :
 [source, language="java"]
 ----
-
+dwarf.goesToTavern();
+assertThat(dwarf.isHungover()).isTrue();
+dwarf.sleep();
+assertThat(dwarf.isHungover()).isFalse();
 ----
 
 ===== Atlanmod :
@@ -360,7 +368,20 @@ Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 ===== AssertJ :
 [source, language="java"]
 ----
+String learnedSong = "i am a dwarf and i'm digging a hole";
+dwarf.learnSong(learnedSong);
+assertThat(dwarf.getLearnedSongs().contains(learnedSong)).isTrue();
+PrintStream defaultoutput = System.out;
+ByteArrayOutputStream intercept = new ByteArrayOutputStream();
+System.setOut(new PrintStream(intercept));
 
+dwarf.goesToTavern();
+
+String sang = intercept.toString().replace("\n","");
+System.setOut(defaultoutput);
+System.out.println(sang);
+assertThat(learnedSong).isEqualTo(sang);
+assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
 ----
 
 ===== Atlanmod :
