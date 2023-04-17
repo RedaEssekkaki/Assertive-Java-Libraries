@@ -1,9 +1,7 @@
 = Tests on the use case of handshakes =
 
-== In this section we provide a comparison of the different libraries on an instance of bidirectional associations.
-
-=== Presentation of the class ===
-The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this Class. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation` and its own element.
+== Presentation of the class ==
+The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this itself. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation` and its own element.
 
 .Show BiDirectionnalAssociation source code
 [%collapsible]
@@ -62,9 +60,9 @@ public class BiDirectionalAssociation<E> {
 ----
 ====
 
-=== Comparisons of the tests ===
+== Comparisons of the tests ==
 
-==== Testing environment ====
+=== Testing environment ===
 This is the environment every following test will use:
 [source, language="java"]
 ----
@@ -84,10 +82,10 @@ assoList.add(BDA_2);
 assoList.add(BDA_3);
 ----
 
-==== Tests set ====
+=== Tests set ===
 This test ensure the bidirectional association between two objects.
 
-===== Apache :
+==== Apache :
 [source, language="java"]
 ----
 Validate.isTrue(BDA_0.get() == null);
@@ -112,7 +110,7 @@ BDA_3.set(BDA_0);
 Validate.isTrue(BDA_0.get() == BDA_3);
 Validate.isTrue(BDA_3.get() == BDA_0);
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 assertThat(BDA_0.get()).isNull();
@@ -137,7 +135,7 @@ assertThat(BDA_0.get()).isSameAs(BDA_3);
 assertThat(BDA_3.get()).isSameAs(BDA_0);
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 Guards.checkEqualTo(BDA_0.get(), null);
@@ -161,7 +159,7 @@ BDA_3.set(BDA_0);
 Guards.checkEqualTo(BDA_0.get(), BDA_3);
 Guards.checkEqualTo(BDA_3.get(), BDA_0);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 for (BiDirectionalAssociation asso : assoList) {
@@ -192,7 +190,7 @@ BDA_3.set(BDA_0);
 checkArgument(Objects.equal(BDA_3.get(), BDA_0), "BD3 et BD0 doivent etre liés");
 checkArgument(Objects.equal(BDA_0.get(), BDA_3), "BD0 et BD3 doivent etre liés");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 assertThat(BDA_0.get()).isNull();
@@ -217,10 +215,10 @@ assertThat(BDA_0.get()).isSameInstanceAs(BDA_3);
 assertThat(BDA_3.get()).isSameInstanceAs(BDA_0);
 ----
 
-==== Tests unset ====
+=== Tests unset ===
 This test ensure a complete handshake between two objects.
 
-===== Apache :
+==== Apache :
 [source, language="java"]
 ----
 BDA_0.set(BDA_1);
@@ -241,7 +239,7 @@ BDA_0.unSet();
 Validate.isTrue(BDA_0.get() == null);
 Validate.isTrue(BDA_1.get() == null);
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 BDA_0.set(BDA_1);
@@ -263,7 +261,7 @@ assertThat(BDA_1.get()).isNull();
 assertThat(BDA_0.get()).isNull();
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 BDA_0.set(BDA_1);
@@ -284,7 +282,7 @@ BDA_0.unSet();
 Guards.checkEqualTo(BDA_0.get(), null);
 Guards.checkEqualTo(BDA_1.get(), null);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 BDA_0.set(BDA_1);
@@ -322,7 +320,7 @@ try{
 catch (NullPointerException expected){
 }
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 BDA_0.set(BDA_1);
