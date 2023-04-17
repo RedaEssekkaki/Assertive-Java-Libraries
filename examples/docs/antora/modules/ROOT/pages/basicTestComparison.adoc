@@ -1,4 +1,4 @@
-= Basic tests comparisons =
+= Basic tests comparison =
 
 == Presentation of the class ==
 We used the `Dwarf` class to make our tests :

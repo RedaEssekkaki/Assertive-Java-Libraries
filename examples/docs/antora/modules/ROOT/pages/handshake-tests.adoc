@@ -1,4 +1,4 @@
-= Tests on the use case of handshakes =
+= Handshake tests comparison =
 
 == Presentation of the class ==
 The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this itself. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation` and its own element.
