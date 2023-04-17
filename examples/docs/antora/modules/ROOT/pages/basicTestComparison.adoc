@@ -456,5 +456,3 @@ dwarf.goesToTavern();
 intercept2()assertThat(sang).isEqualTo("i am a dwarf and i'm digging a hole");
 assertThat(dwarf.getLearnedSongs().contains("i am a dwarf and i'm digging a hole")).isFalse();
 ----
-
-== Conclusion ==
