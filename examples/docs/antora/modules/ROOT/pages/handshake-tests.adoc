@@ -3,9 +3,343 @@
 == In this section we provide a comparison of the different libraries on an instance of bidirectional associations.
 
 === Presentation of the class ===
-The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this Class. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation`
+The `BiDirectionalAssociation` class is a class that allows for two objects to link together through this Class. Each `BiDirectionalAssociation` holds both the other `BiDirectionalAssociation` and its own element.
 
+.Show BiDirectionnalAssociation source code
+[%collapsible]
+====
+[source, language="java"]
+----
+public class BiDirectionalAssociation<E> {
+
+    private BiDirectionalAssociation associatedObject;
+
+    private E value;
+
+    public BiDirectionalAssociation(){}
+
+    public void set(BiDirectionalAssociation<E>  obj)
+    {
+        if (this.associatedObject != null)
+            this.associatedObject.basicUnSet();
+        this.associatedObject = obj;
+        obj.basicSet(this);
+    }
+
+    private void basicSet(BiDirectionalAssociation<E>  obj)
+    {
+        this.associatedObject = obj;
+    }
+
+    public void unSet()
+    {
+        if (this.associatedObject != null)
+           this.associatedObject.basicUnSet();
+
+        this.associatedObject = null;
+    }
+
+    private void basicUnSet()
+    {
+        this.associatedObject = null;
+    }
+
+    public Object get()
+    {
+        return associatedObject;
+    }
+
+    public E value()
+    {
+        return  value;
+    }
+
+    public void setValue(E value)
+    {
+        this.value = value;
+    }
+}
+----
+====
 
 === Comparisons of the tests ===
 
-== Conclusion ==
+==== Testing environment ====
+This is the environment every following test will use:
+[source, language="java"]
+----
+BDA_0 = new BiDirectionalAssociation<>();
+BDA_1 = new BiDirectionalAssociation<>();
+BDA_2 = new BiDirectionalAssociation<>();
+BDA_3 = new BiDirectionalAssociation<>();
+----
+
+Guava tests uses these additional statements:
+[source, language="java"]
+----
+assoList = new ArrayList<>();
+assoList.add(BDA_0);
+assoList.add(BDA_1);
+assoList.add(BDA_2);
+assoList.add(BDA_3);
+----
+
+==== Tests set ====
+This test ensure the bidirectional association between two objects.
+
+===== Apache :
+[source, language="java"]
+----
+Validate.isTrue(BDA_0.get() == null);
+Validate.isTrue(BDA_1.get() == null);
+Validate.isTrue(BDA_2.get() == null);
+Validate.isTrue(BDA_3.get() == null);
+
+BDA_0.set(BDA_1);
+
+Validate.isTrue(BDA_0.get() == BDA_1);
+Validate.isTrue(BDA_1.get() == BDA_0);
+
+BDA_1.set(BDA_2);
+
+Validate.isTrue(BDA_0.get() == null);
+
+Validate.isTrue(BDA_1.get() == BDA_2);
+Validate.isTrue(BDA_2.get() == BDA_1);
+
+BDA_3.set(BDA_0);
+
+Validate.isTrue(BDA_0.get() == BDA_3);
+Validate.isTrue(BDA_3.get() == BDA_0);
+----
+===== AssertJ :
+[source, language="java"]
+----
+assertThat(BDA_0.get()).isNull();
+assertThat(BDA_1.get()).isNull();
+assertThat(BDA_2.get()).isNull();
+assertThat(BDA_3.get()).isNull();
+
+BDA_0.set(BDA_1);
+
+assertThat(BDA_0.get()).isSameAs(BDA_1);
+assertThat(BDA_1.get()).isSameAs(BDA_0);
+
+BDA_1.set(BDA_2);
+
+assertThat(BDA_1.get()).isSameAs(BDA_2);
+assertThat(BDA_2.get()).isSameAs(BDA_1);
+assertThat(BDA_0.get()).isNull();
+
+BDA_3.set(BDA_0);
+
+assertThat(BDA_0.get()).isSameAs(BDA_3);
+assertThat(BDA_3.get()).isSameAs(BDA_0);
+----
+
+===== Atlanmod :
+[source, language="java"]
+----
+Guards.checkEqualTo(BDA_0.get(), null);
+Guards.checkEqualTo(BDA_1.get(), null);
+Guards.checkEqualTo(BDA_2.get(), null);
+Guards.checkEqualTo(BDA_3.get(), null);
+
+BDA_0.set(BDA_1);
+
+Guards.checkEqualTo(BDA_0.get(), BDA_1);
+Guards.checkEqualTo(BDA_1.get(), BDA_0);
+
+BDA_1.set(BDA_2);
+
+Guards.checkEqualTo(BDA_0.get(), null);
+Guards.checkEqualTo(BDA_1.get(), BDA_2);
+Guards.checkEqualTo(BDA_2.get(), BDA_1);
+
+BDA_3.set(BDA_0);
+
+Guards.checkEqualTo(BDA_0.get(), BDA_3);
+Guards.checkEqualTo(BDA_3.get(), BDA_0);
+----
+===== Guava :
+[source, language="java"]
+----
+for (BiDirectionalAssociation asso : assoList) {
+    try{
+        checkNotNull(asso.get(), "Fiels must be null");
+        fail("A NullPointerException was expected");
+    }
+    catch (NullPointerException expected){
+    }
+}
+
+BDA_0.set(BDA_1);
+checkArgument(Objects.equal(BDA_0.get(), BDA_1), "BD0 et BD1 doivent etre liés");
+checkArgument(Objects.equal(BDA_1.get(), BDA_0), "BD1 et BD0 doivent etre liés");
+
+BDA_1.set(BDA_2);
+try{
+    checkNotNull(BDA_0.get(), "Fiels must be null");
+    fail("A NullPointerException was expected");
+}
+catch (NullPointerException expected){
+}
+
+checkArgument(Objects.equal(BDA_2.get(), BDA_1), "BD2 et BD1 doivent etre liés");
+checkArgument(Objects.equal(BDA_1.get(), BDA_2), "BD1 et BD2 doivent etre liés");
+
+BDA_3.set(BDA_0);
+checkArgument(Objects.equal(BDA_3.get(), BDA_0), "BD3 et BD0 doivent etre liés");
+checkArgument(Objects.equal(BDA_0.get(), BDA_3), "BD0 et BD3 doivent etre liés");
+----
+===== Truth :
+[source, language="java"]
+----
+assertThat(BDA_0.get()).isNull();
+assertThat(BDA_1.get()).isNull();
+assertThat(BDA_2.get()).isNull();
+assertThat(BDA_3.get()).isNull();
+
+BDA_0.set(BDA_1);
+
+assertThat(BDA_0.get()).isSameInstanceAs(BDA_1);
+assertThat(BDA_1.get()).isSameInstanceAs(BDA_0);
+
+BDA_1.set(BDA_2);
+
+assertThat(BDA_0.get()).isNull();
+assertThat(BDA_2.get()).isSameInstanceAs(BDA_1);
+assertThat(BDA_1.get()).isSameInstanceAs(BDA_2);
+
+BDA_3.set(BDA_0);
+
+assertThat(BDA_0.get()).isSameInstanceAs(BDA_3);
+assertThat(BDA_3.get()).isSameInstanceAs(BDA_0);
+----
+
+==== Tests unset ====
+This test ensure a complete handshake between two objects.
+
+===== Apache :
+[source, language="java"]
+----
+BDA_0.set(BDA_1);
+BDA_2.set(BDA_3);
+
+Validate.notNull(BDA_0.get());
+Validate.notNull(BDA_1.get());
+Validate.notNull(BDA_2.get());
+Validate.notNull(BDA_3.get());
+
+BDA_3.unSet();
+
+Validate.isTrue(BDA_2.get() == null);
+Validate.isTrue(BDA_3.get() == null);
+
+BDA_0.unSet();
+
+Validate.isTrue(BDA_0.get() == null);
+Validate.isTrue(BDA_1.get() == null);
+----
+===== AssertJ :
+[source, language="java"]
+----
+BDA_0.set(BDA_1);
+BDA_2.set(BDA_3);
+
+assertThat(BDA_0.get()).isNotNull();
+assertThat(BDA_1.get()).isNotNull();
+assertThat(BDA_2.get()).isNotNull();
+assertThat(BDA_3.get()).isNotNull();
+
+BDA_3.unSet();
+
+assertThat(BDA_3.get()).isNull();
+assertThat(BDA_2.get()).isNull();
+
+BDA_0.unSet();
+
+assertThat(BDA_1.get()).isNull();
+assertThat(BDA_0.get()).isNull();
+----
+
+===== Atlanmod :
+[source, language="java"]
+----
+BDA_0.set(BDA_1);
+BDA_2.set(BDA_3);
+
+Guards.checkNotNull(BDA_0.get());
+Guards.checkNotNull(BDA_1.get());
+Guards.checkNotNull(BDA_2.get());
+Guards.checkNotNull(BDA_3.get());
+
+BDA_3.unSet();
+
+Guards.checkEqualTo(BDA_2.get(), null);
+Guards.checkEqualTo(BDA_3.get(), null);
+
+BDA_0.unSet();
+
+Guards.checkEqualTo(BDA_0.get(), null);
+Guards.checkEqualTo(BDA_1.get(), null);
+----
+===== Guava :
+[source, language="java"]
+----
+BDA_0.set(BDA_1);
+BDA_2.set(BDA_3);
+
+for (BiDirectionalAssociation asso : assoList) {
+    checkNotNull(asso.get(), "Fiels must be not null");
+}
+
+BDA_3.unSet();
+try{
+    checkNotNull(BDA_2.get(), "Fiels must be null");
+    fail("A NullPointerException was expected");
+}
+catch (NullPointerException expected){
+}
+try{
+    checkNotNull(BDA_3.get(), "Fiels must be null");
+    fail("A NullPointerException was expected");
+}
+catch (NullPointerException expected){
+}
+
+BDA_0.unSet();
+try{
+    checkNotNull(BDA_0.get(), "Fiels must be null");
+    fail("A NullPointerException was expected");
+}
+catch (NullPointerException expected){
+}
+try{
+    checkNotNull(BDA_1.get(), "Fiels must be null");
+    fail("A NullPointerException was expected");
+}
+catch (NullPointerException expected){
+}
+----
+===== Truth :
+[source, language="java"]
+----
+BDA_0.set(BDA_1);
+BDA_2.set(BDA_3);
+
+assertThat(BDA_0.get()).isNotNull();
+assertThat(BDA_1.get()).isNotNull();
+assertThat(BDA_2.get()).isNotNull();
+assertThat(BDA_3.get()).isNotNull();
+
+BDA_3.unSet();
+
+assertThat(BDA_2.get()).isNull();
+assertThat(BDA_3.get()).isNull();
+
+BDA_0.unSet();
+
+assertThat(BDA_0.get()).isNull();
+assertThat(BDA_1.get()).isNull();
+----
