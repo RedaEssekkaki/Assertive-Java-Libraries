@@ -65,8 +65,12 @@ public class ApacheCommonsBasicTest {
     {
         dwarf.goesToTavern();
         //test that dwarf IS hungover
+        Validate.isTrue( dwarf.isHungover() );
+
+
         dwarf.sleep();
         //test that dwarf is NOT hungover
+        Validate.isTrue( !dwarf.isHungover() );
     }
 
     @Test

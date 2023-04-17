@@ -332,7 +332,10 @@ This test ensures that the hungover field is properly set by the dwarf going to 
 
 [source, language="java"]
 ----
-
+dwarf.goesToTavern();
+Validate.isTrue( dwarf.isHungover() );
+dwarf.sleep();
+Validate.isTrue( !dwarf.isHungover() );
 ----
 ===== AssertJ :
 [source, language="java"]
