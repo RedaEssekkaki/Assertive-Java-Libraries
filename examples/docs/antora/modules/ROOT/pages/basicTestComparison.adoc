@@ -1,8 +1,6 @@
 = Basic tests comparisons =
 
-== In this section we provide a comparison of the different libraries on an instance of basic tests made on a class ==
-
-=== Presentation of the class ===
+== Presentation of the class ==
 We used the `Dwarf` class to make our tests :
 
 This class has the following fields : `String name; private double size; private double weight; private boolean hasBeard; private boolean hasHangover; SongRepository knownSongs` +
@@ -149,9 +147,9 @@ public class SongRepository {
 ----
 ====
 
-=== Comparisons of the tests ===
+== Comparisons of the tests ==
 
-==== testConstructor ====
+=== testConstructor ===
 This test is to ensure that the constructor properly sets the object's fields
 
 ===== Apache :
@@ -164,7 +162,7 @@ Validate.isTrue( dwarf.getSize() == 80.4);
 Validate.isTrue( dwarf.getWeight() == 90.3);
 Validate.isTrue(!dwarf.isBearded());
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 assertThat(dwarf)
@@ -172,7 +170,7 @@ assertThat(dwarf)
                 .containsExactly("Jeremy", 80.4, 90.3, false);
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 Guards.checkEqualTo(dwarf.getName(),"Jeremy");
@@ -180,7 +178,7 @@ Guards.checkEqualTo(dwarf.getSize(),80.4);
 Guards.checkEqualTo(dwarf.getWeight(),90.3);
 Guards.checkEqualTo(dwarf.isBearded(),false);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 test = Objects.equal(dwarf.getName(), "Jeremy");
@@ -195,7 +193,7 @@ checkArgument(test, "Wrong weight");
 checkArgument(!dwarf.isBearded(), "We should not have beard");
 fail("Expected false but is true");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 assertThat(dwarf.getName()).isEqualTo("Jeremy");
@@ -204,37 +202,37 @@ assertThat(dwarf.getWeight()).isEqualTo(90.3);
 assertThat(dwarf.isBearded()).isFalse();
 ----
 
-==== testSize ====
+=== testSize ===
 This test ensures that `getSize()` and `setSize()` works as intended
 
-===== Apache :
+==== Apache :
 
 [source, language="java"]
 ----
 dwarf.setSize(40.0);
 Validate.isTrue( dwarf.getSize() == 40.0);
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 dwarf.setSize(40.0);
 assertThat(dwarf.getSize()).isEqualTo(40.0);
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 dwarf.setSize(40.0);
 Guards.checkEqualTo(dwarf.getSize(),40.0);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 dwarf.setSize(40.0);
 test = Objects.equal(dwarf.getSize(), 40.0);
 checkArgument(test, "Wrong size");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 dwarf.setSize(40.0);
@@ -242,47 +240,47 @@ assertThat(dwarf.getSize()).isEqualTo(40.0);
 ----
 
 
-==== testWeight ====
+=== testWeight ===
 This test ensures that `getWeight()` and `setWeight()` works as intended
 
-===== Apache :
+==== Apache :
 
 [source, language="java"]
 ----
 dwarf.setWeight(24.7);
 Validate.isTrue( dwarf.getWeight() == 24.7);
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 dwarf.setWeight(24.7);
 assertThat(dwarf.getWeight()).isEqualTo(24.7);
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 dwarf.setWeight(24.7);
 Guards.checkEqualTo(dwarf.getWeight(),24.7);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 dwarf.setWeight(24.7);
 test = Objects.equal(dwarf.getWeight(), 24.7);
 checkArgument(test, "Wrong weight");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 dwarf.setWeight(24.7);
 assertThat(dwarf.getWeight()).isEqualTo(24.7);
 ----
 
-==== testBeard ====
+=== testBeard ===
 This test ensures that `shave()`,`growBeard()` and `isBearded()` works as intended
 
-===== Apache :
+==== Apache :
 
 [source, language="java"]
 ----
@@ -291,7 +289,7 @@ Validate.isTrue(!dwarf.isBearded());
 dwarf.growBeard();
 Validate.isTrue(dwarf.isBearded());
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 dwarf.shave();
@@ -300,7 +298,7 @@ dwarf.growBeard();
 assertThat(dwarf.isBearded()).isTrue();
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 dwarf.shave();
@@ -308,7 +306,7 @@ Guards.checkEqualTo(dwarf.isBearded(),false);
 dwarf.growBeard();
 Guards.checkArgument(dwarf.isBearded());
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 dwarf.shave();
@@ -316,7 +314,7 @@ checkArgument(!dwarf.isBearded(), "We should not have beard");
 dwarf.growBeard();
 checkArgument(dwarf.isBearded(), "We should not have beard");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 dwarf.shave();
@@ -325,10 +323,10 @@ dwarf.growBeard();
 assertThat(dwarf.isBearded()).isTrue();
 ----
 
-==== testHungover ====
+=== testHungover ===
 This test ensures that the hungover field is properly set by the dwarf going to the tavern and sleeping
 
-===== Apache :
+==== Apache :
 
 [source, language="java"]
 ----
@@ -337,7 +335,7 @@ Validate.isTrue( dwarf.isHungover() );
 dwarf.sleep();
 Validate.isTrue( !dwarf.isHungover() );
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 dwarf.goesToTavern();
@@ -346,7 +344,7 @@ dwarf.sleep();
 assertThat(dwarf.isHungover()).isFalse();
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 dwarf.goesToTavern();
@@ -354,7 +352,7 @@ Guards.checkArgument(dwarf.isHungover());
 dwarf.sleep();
 Guards.checkEqualTo(dwarf.isHungover(),false);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 dwarf.goesToTavern();
@@ -362,7 +360,7 @@ checkArgument(dwarf.isHungover(), "Dwarf should be hungover");
 dwarf.sleep();
 checkArgument(!dwarf.isHungover(), "Dwarf should not be hungover");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 dwarf.goesToTavern();
@@ -371,7 +369,7 @@ dwarf.sleep();
 assertThat(dwarf.isHungover()).isFalse();
 ----
 
-==== testSongs ====
+=== testSongs ===
 This test ensures that the learned songs get updated when a dwarf learns a song & goes to the tavern (which causes him to forget a song and sing it).
 This also ensures that the song is properly printed when sang.
 
@@ -397,7 +395,7 @@ void intercept2()
 ----
 These are not actual functions in the code, this is just a way to reduce repeated and irrelevant code in the comparison.
 ====
-===== Apache :
+==== Apache :
 
 [source, language="java"]
 ----
@@ -410,7 +408,7 @@ intercept2()
 Validate.isTrue(sang.equals(learnedSong));
 Validate.isTrue( !dwarf.getLearnedSongs().contains(learnedSong) );
 ----
-===== AssertJ :
+==== AssertJ :
 [source, language="java"]
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
@@ -423,7 +421,7 @@ assertThat(learnedSong).isEqualTo(sang);
 assertThat(dwarf.getLearnedSongs().contains(sang)).isFalse();
 ----
 
-===== Atlanmod :
+==== Atlanmod :
 [source, language="java"]
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
@@ -435,7 +433,7 @@ intercept2()Guards.checkEqualTo(sang,learnedSong);
 
 Guards.checkEqualTo(dwarf.getLearnedSongs().contains(sang), false);
 ----
-===== Guava :
+==== Guava :
 [source, language="java"]
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
@@ -446,7 +444,7 @@ intercept2()test = Objects.equal(sang, learnedSong);
 checkArgument(test, "Wrong song");
 checkArgument(!dwarf.getLearnedSongs().contains(learnedSong), "It should not contain the song");
 ----
-===== Truth :
+==== Truth :
 [source, language="java"]
 ----
 String learnedSong = "i am a dwarf and i'm digging a hole";
