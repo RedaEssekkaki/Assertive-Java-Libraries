@@ -111,7 +111,7 @@ Here are example errors messages for the same test results :
 [source, language="java"]
 ----
 //Apache Commons :
-ava.lang.IllegalArgumentException: The validated expression is false
+java.lang.IllegalArgumentException: The validated expression is false
 //AssertJ :
 org.opentest4j.AssertionFailedError:
 expected: 40.1
