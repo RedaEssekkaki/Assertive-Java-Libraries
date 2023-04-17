@@ -40,7 +40,7 @@ From these comparisons we created these ratings :
 
 |Easy to write
 | ⭐⭐
-| ⭐⭐⭐⭐
+| ⭐⭐⭐⭐⭐
 | ⭐⭐⭐
 | ⭐⭐
 | ⭐⭐⭐⭐⭐
@@ -55,8 +55,8 @@ From these comparisons we created these ratings :
 
 |Error message legibility
 | ⭐
-| ⭐⭐⭐
-| ⭐
+| ⭐⭐⭐⭐
+| ⭐⭐
 | ⭐
 | ⭐⭐⭐⭐⭐
 
